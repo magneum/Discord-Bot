@@ -1,4 +1,4 @@
-const webhook = require("./database/json/webhooks.json");
+const webhook = require("../database/json/webhooks.json");
 const discord = require("discord.js");
 require("dotenv").config("./.env");
 const chalk = require("chalk");

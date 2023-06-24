@@ -1,9 +1,10 @@
 {
-  "main": "index.js",
+  "main": "disbot.js",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon disbot.js",
     "replace": "node utils/replace.js",
-    "start": "forever index.js --colors",
+    "start": "forever disbot.js --colors",
     "revert": "git init --initial-branch=main && git fetch origin main && git reset --hard origin/main"
   },
   "dependencies": {

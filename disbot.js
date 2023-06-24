@@ -4,47 +4,46 @@ require("dotenv").config("./.env");
 const chalk = require("chalk");
 console.clear();
 
-const tableNames = [
-  "startLogs",
-  "shardLogs",
-  "errorLogs",
-  "dmLogs",
-  "voiceLogs",
-  "serverLogs",
-  "serverLogs2",
-  "commandLogs",
-  "consoleLogs",
-  "warnLogs",
-  "voiceErrorLogs",
-  "creditLogs",
-  "evalLogs",
-  "interactionLogs",
-];
+const disbot = async () => {
+  const tableNames = [
+    "startLogs",
+    "shardLogs",
+    "errorLogs",
+    "dmLogs",
+    "voiceLogs",
+    "serverLogs",
+    "serverLogs2",
+    "commandLogs",
+    "consoleLogs",
+    "warnLogs",
+    "voiceErrorLogs",
+    "creditLogs",
+    "evalLogs",
+    "interactionLogs",
+  ];
 
-const createTablesIfNotExist = async () => {
-  try {
-    for (const tableName of tableNames) {
-      const query = `
+  const createTablesIfNotExist = async () => {
+    try {
+      for (const tableName of tableNames) {
+        const query = `
 CREATE TABLE IF NOT EXISTS ${tableName} (
 id SERIAL PRIMARY KEY,
 data JSONB
 );
 `;
-      await pgs.DATABASE.query(query);
-      console.log(chalk.green(`Table ${tableName} created or already exists.`));
+        await pgs.DATABASE.query(query);
+      }
+    } catch (error) {
+      console.error(chalk.bold.red("❌ Error creating tables:"), error);
     }
-  } catch (error) {
-    console.error(chalk.red("Error creating tables:"), error);
-  }
-};
+  };
 
-const main = async () => {
   try {
     await pgs.DATABASE.authenticate();
-    console.log(chalk.green("Connected to PostgreSQL!"));
+    console.log(chalk.bold.green("✅ Connected to PostgreSQL!"));
     await createTablesIfNotExist();
   } catch (error) {
-    console.error(chalk.red("Failed to connect to PostgreSQL:"), error);
+    console.error(chalk.bold.red("❌ Failed to connect to PostgreSQL:"), error);
     return;
   }
 
@@ -53,6 +52,7 @@ const main = async () => {
   for (const tableName of tableNames) {
     webhook[tableName] = tableName;
   }
+
   const sendLog = async (tableName, logData) => {
     const query = {
       text: `INSERT INTO ${tableName} (data) VALUES ($1)`,
@@ -62,7 +62,10 @@ const main = async () => {
     try {
       await pgs.DATABASE.query(query.text, query.values);
     } catch (error) {
-      console.error(chalk.red(`Error inserting log into ${tableName}:`), error);
+      console.error(
+        chalk.bold.red(`❌ Error inserting log into ${tableName}:`),
+        error
+      );
     }
   };
 
@@ -88,47 +91,51 @@ const main = async () => {
     respawn: true,
   });
 
-  if (process.env.TOPGG_TOKEN) {
-    const { AutoPoster } = require("topgg-autoposter");
-    AutoPoster(process.env.TOPGG_TOKEN, manager);
+  switch (process.env.TOPGG_TOKEN) {
+    case true:
+      const { AutoPoster } = require("topgg-autoposter");
+      AutoPoster(process.env.TOPGG_TOKEN, manager);
+      break;
+    default:
+      break;
   }
 
   console.log(
-    chalk.blue.bold("System") +
+    chalk.bold.blue("System") +
       chalk.white(">>") +
-      chalk.green("Starting up") +
+      chalk.green("✨ Starting up") +
       chalk.white("...")
   );
-  console.log("\u001b[0m");
   console.log(
-    chalk.blue.bold("© MagneumDev | 2021 - " + new Date().getFullYear())
+    chalk.bold.blue("© MagneumDev | 2021 - " + new Date().getFullYear())
   );
-  console.log(chalk.blue.bold("All rights reserved"));
+  console.log(chalk.bold.blue("All rights reserved"));
   console.log("\u001b[0m");
   console.log("\u001b[0m");
   console.log(
-    chalk.blue.bold("System") +
+    chalk.bold.blue("System") +
       chalk.white(">>") +
-      chalk.red("Version " + require(`${process.cwd()}/package.json`).version) +
-      chalk.green("loaded")
+      chalk.red(
+        "📦 Version " + require(`${process.cwd()}/package.json`).version
+      ) +
+      chalk.green(" loaded")
   );
-  console.log("\u001b[0m");
 
   manager.on("shardCreate", async (shard) => {
-    const logData = {
+    await sendLog(startLogs.tableName, {
       username: "Bot Logs",
       embeds: [
         {
-          title: "🆙・Launching shard",
+          title: "🆙 Launching shard",
           description: "A shard has just been launched",
           fields: [
             {
-              name: "🆔┆ID",
+              name: "🆔 ID",
               value: `${shard.id + 1}/${manager.totalShards}`,
               inline: true,
             },
             {
-              name: "📃┆State",
+              name: "📃 State",
               value: "Starting up...",
               inline: true,
             },
@@ -136,111 +143,104 @@ const main = async () => {
           color: "#5865F2",
         },
       ],
-    };
-
-    await sendLog(startLogs.tableName, logData);
+    });
 
     console.log(
-      chalk.blue.bold("System") +
+      chalk.bold.blue("System") +
         chalk.white(">>") +
-        chalk.green("Starting") +
-        chalk.red("Shard #" + (shard.id + 1)) +
+        chalk.green("✨ Starting") +
+        chalk.red(" Shard #" + (shard.id + 1)) +
         chalk.white("...")
     );
-    console.log("\u001b[0m");
 
     shard.on("death", async (process) => {
-      const logData = {
+      await sendLog(shardLogs.tableName, {
         username: "Bot Logs",
         embeds: [
           {
-            title: `🚨・Closing shard ${shard.id + 1}/${
+            title: `🚨 Closing shard ${shard.id + 1}/${
               manager.totalShards
             } unexpectedly`,
             fields: [
               {
-                name: "🆔┆ID",
+                name: "🆔 ID",
                 value: `${shard.id + 1}/${manager.totalShards}`,
               },
             ],
             color: "#5865F2",
           },
         ],
-      };
+      });
 
-      await sendLog(shardLogs.tableName, logData);
-
-      if (process.exitCode === null) {
-        const logData = {
-          username: "Bot Logs",
-          embeds: [
-            {
-              title: `🚨・Shard ${shard.id + 1}/${
-                manager.totalShards
-              } exited with NULL error code!`,
-              fields: [
-                {
-                  name: "PID",
-                  value: "`" + process.pid + "`",
-                },
-                {
-                  name: "Exit code",
-                  value: "`" + process.exitCode + "`",
-                },
-              ],
-              color: "#5865F2",
-            },
-          ],
-        };
-
-        await sendLog(shardLogs.tableName, logData);
+      switch (process.exitCode === null) {
+        case true:
+          await sendLog(shardLogs.tableName, {
+            username: "Bot Logs",
+            embeds: [
+              {
+                title: `🚨 Shard ${shard.id + 1}/${
+                  manager.totalShards
+                } exited with NULL error code!`,
+                fields: [
+                  {
+                    name: "PID",
+                    value: "`" + process.pid + "`",
+                  },
+                  {
+                    name: "Exit code",
+                    value: "`" + process.exitCode + "`",
+                  },
+                ],
+                color: "#5865F2",
+              },
+            ],
+          });
+          break;
+        default:
+          break;
       }
     });
 
     shard.on("shardDisconnect", async (event) => {
-      const logData = {
+      await sendLog(shardLogs.tableName, {
         username: "Bot Logs",
         embeds: [
           {
-            title: `🚨・Shard ${shard.id + 1}/${
+            title: `🚨 Shard ${shard.id + 1}/${
               manager.totalShards
             } disconnected`,
             description: "Dumping socket close event...",
             color: "#5865F2",
           },
         ],
-      };
-
-      await sendLog(shardLogs.tableName, logData);
+      });
     });
 
     shard.on("shardReconnecting", async () => {
-      const logData = {
+      await sendLog(shardLogs.tableName, {
         username: "Bot Logs",
         embeds: [
           {
-            title: `🚨・Reconnecting shard ${shard.id + 1}/${
+            title: `🚨 Reconnecting shard ${shard.id + 1}/${
               manager.totalShards
             }`,
             color: "#5865F2",
           },
         ],
-      };
-
-      await sendLog(shardLogs.tableName, logData);
+      });
     });
   });
 
   manager.spawn();
 
   process.on("unhandledRejection", async (error) => {
-    console.error(chalk.red("Unhandled promise rejection:"), error);
+    console.error(chalk.bold.red("Unhandled promise rejection:"), error);
     if (error && error.length > 950)
       error = error.slice(0, 950) + "... view console for details";
     if (error.stack && error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
     if (!error.stack) return;
-    const logData = {
+    await sendLog(consoleLogs.tableName, {
       username: "Bot Logs",
       embeds: [
         {
@@ -259,14 +259,12 @@ const main = async () => {
           ],
         },
       ],
-    };
-
-    await sendLog(consoleLogs.tableName, logData);
+    });
   });
 
   process.on("warning", async (warn) => {
-    console.warn(chalk.yellow("Warning:"), warn);
-    const logData = {
+    console.warn(chalk.bold.yellow("Warning:"), warn);
+    await sendLog(warnLogs.tableName, {
       username: "Bot Logs",
       embeds: [
         {
@@ -279,12 +277,10 @@ const main = async () => {
           ],
         },
       ],
-    };
-
-    await sendLog(warnLogs.tableName, logData);
+    });
   });
 };
 
-main().catch((error) => {
-  console.error(chalk.red("Error:"), error);
+disbot().catch((error) => {
+  console.error(chalk.bold.red("❌ An error occurred during startup:"), error);
 });
