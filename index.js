@@ -1,7 +1,8 @@
-const chalk = require("chalk");
-require("dotenv").config("./.env");
-const discord = require("discord.js");
 const pgs = require("./config/pgs.js");
+const discord = require("discord.js");
+require("dotenv").config("./.env");
+const chalk = require("chalk");
+console.clear();
 
 const tableNames = [
   "startLogs",
@@ -30,20 +31,20 @@ data JSONB
 );
 `;
       await pgs.DATABASE.query(query);
-      console.log(`Table ${tableName} created or already exists.`);
+      console.log(chalk.green(`Table ${tableName} created or already exists.`));
     }
   } catch (error) {
-    console.error("Error creating tables:", error);
+    console.error(chalk.red("Error creating tables:"), error);
   }
 };
 
 const main = async () => {
   try {
     await pgs.DATABASE.authenticate();
-    console.log("Connected to PostgreSQL!");
+    console.log(chalk.green("Connected to PostgreSQL!"));
     await createTablesIfNotExist();
   } catch (error) {
-    console.error("Failed to connect to PostgreSQL:", error);
+    console.error(chalk.red("Failed to connect to PostgreSQL:"), error);
     return;
   }
 
@@ -61,7 +62,7 @@ const main = async () => {
     try {
       await pgs.DATABASE.query(query.text, query.values);
     } catch (error) {
-      console.error(`Error inserting log into ${tableName}:`, error);
+      console.error(chalk.red(`Error inserting log into ${tableName}:`), error);
     }
   };
 
@@ -99,8 +100,10 @@ const main = async () => {
       chalk.white("...")
   );
   console.log("\u001b[0m");
-  console.log(chalk.red("© MagneumDev | 2021 - " + new Date().getFullYear()));
-  console.log(chalk.red("All rights reserved"));
+  console.log(
+    chalk.blue.bold("© MagneumDev | 2021 - " + new Date().getFullYear())
+  );
+  console.log(chalk.blue.bold("All rights reserved"));
   console.log("\u001b[0m");
   console.log("\u001b[0m");
   console.log(
@@ -231,7 +234,7 @@ const main = async () => {
   manager.spawn();
 
   process.on("unhandledRejection", async (error) => {
-    console.error("Unhandled promise rejection:", error);
+    console.error(chalk.red("Unhandled promise rejection:"), error);
     if (error && error.length > 950)
       error = error.slice(0, 950) + "... view console for details";
     if (error.stack && error.stack.length > 950)
@@ -262,7 +265,7 @@ const main = async () => {
   });
 
   process.on("warning", async (warn) => {
-    console.warn("Warning:", warn);
+    console.warn(chalk.yellow("Warning:"), warn);
     const logData = {
       username: "Bot Logs",
       embeds: [
@@ -282,7 +285,6 @@ const main = async () => {
   });
 };
 
-console.clear();
 main().catch((error) => {
-  console.error("Error:", error);
+  console.error(chalk.red("Error:"), error);
 });
