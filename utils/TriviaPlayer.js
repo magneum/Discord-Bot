@@ -1,16 +1,15 @@
 const {
+  StreamType,
+  entersState,
   AudioPlayerStatus,
   createAudioPlayer,
-  entersState,
-  VoiceConnectionDisconnectReason,
-  VoiceConnectionStatus,
   createAudioResource,
-  StreamType,
+  VoiceConnectionStatus,
+  VoiceConnectionDisconnectReason,
 } = require("@discordjs/voice");
 const { setTimeout } = require("timers");
 const { promisify } = require("util");
 const ytdl = require("ytdl-core");
-const { MessageEmbed } = require("discord.js");
 const wait = promisify(setTimeout);
 
 class TriviaPlayer {
