@@ -6,8 +6,8 @@ module.exports = (client, error) => {
     error.message = "Send to console!";
   }
   const errorlog = new discord.WebhookClient({
-    id: client.webhooks.voiceErrorLogs.id,
-    token: client.webhooks.voiceErrorLogs.token,
+    id: client.webhooks.HookLogger.id,
+    token: client.webhooks.HookLogger.token,
   });
 
   let embed = new discord.EmbedBuilder()

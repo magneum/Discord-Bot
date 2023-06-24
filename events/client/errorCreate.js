@@ -9,8 +9,8 @@ module.exports = async (client, err, command, interaction) => {
   });
 
   const errorlog = new discord.WebhookClient({
-    id: client.webhooks.errorLogs.id,
-    token: client.webhooks.errorLogs.token,
+    id: client.webhooks.HookLogger.id,
+    token: client.webhooks.HookLogger.token,
   });
 
   let embed = new discord.MessageEmbed()

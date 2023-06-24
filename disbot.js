@@ -1,59 +1,14 @@
-const webhook = require("../database/json/webhooks.json");
-const discord = require("discord.js");
-require("dotenv").config("./.env");
 const chalk = require("chalk");
+require("dotenv").config("./.env");
+const discord = require("discord.js");
+const webhook = require("./database/json/webhooks.json");
 
-const webHooksArray = [
-  "startLogs",
-  "shardLogs",
-  "errorLogs",
-  "dmLogs",
-  "voiceLogs",
-  "serverLogs",
-  "serverLogs2",
-  "commandLogs",
-  "consoleLogs",
-  "warnLogs",
-  "voiceErrorLogs",
-  "creditLogs",
-  "evalLogs",
-  "interactionLogs",
-];
+webhook["HookLogger"].id = process.env.WEBHOOK_ID;
+webhook["HookLogger"].token = process.env.WEBHOOK_TOKEN;
 
-if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
-  for (const webHook of webHooksArray) {
-    switch (webHook) {
-      case "startLogs":
-      case "shardLogs":
-      case "errorLogs":
-      case "dmLogs":
-      case "voiceLogs":
-      case "serverLogs":
-      case "serverLogs2":
-      case "commandLogs":
-      case "consoleLogs":
-      case "warnLogs":
-      case "voiceErrorLogs":
-      case "creditLogs":
-      case "evalLogs":
-      case "interactionLogs":
-        webhook[webHook].id = process.env.WEBHOOK_ID;
-        webhook[webHook].token = process.env.WEBHOOK_TOKEN;
-        break;
-      default:
-        break;
-    }
-  }
-}
-
-const startLogs = new discord.WebhookClient({
-  token: webhook.startLogs.token,
-  id: webhook.startLogs.id,
-});
-
-const shardLogs = new discord.WebhookClient({
-  token: webhook.shardLogs.token,
-  id: webhook.shardLogs.id,
+const HookLogger = new discord.WebhookClient({
+  token: webhook.HookLogger.token,
+  id: webhook.HookLogger.id,
 });
 
 const manager = new discord.ShardingManager("./brain.js", {
@@ -67,7 +22,6 @@ if (process.env.TOPGG_TOKEN) {
   AutoPoster(process.env.TOPGG_TOKEN, manager);
 }
 
-console.clear();
 console.log(
   chalk.blue.bold("System") +
     chalk.white(">>") +
@@ -75,7 +29,7 @@ console.log(
     chalk.white("...")
 );
 console.log("\u001b[0m");
-console.log(chalk.red("© MagneumDev | 2021 - " + new Date().getFullYear()));
+console.log(chalk.red("© Magneum | 2021 - " + new Date().getFullYear()));
 console.log(chalk.red("All rights reserved"));
 console.log("\u001b[0m");
 console.log("\u001b[0m");
@@ -88,7 +42,7 @@ console.log(
 console.log("\u001b[0m");
 
 manager.on("shardCreate", async (shard) => {
-  await startLogs.send({
+  await HookLogger.send({
     username: "Bot Logs",
     embeds: [
       new discord.EmbedBuilder()
@@ -120,7 +74,7 @@ manager.on("shardCreate", async (shard) => {
   console.log("\u001b[0m");
 
   shard.on("death", async (process) => {
-    await shardLogs.send({
+    await HookLogger.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -142,7 +96,7 @@ manager.on("shardCreate", async (shard) => {
     });
 
     if (process.exitCode === null) {
-      await shardLogs.send({
+      await HookLogger.send({
         username: "Bot Logs",
         embeds: [
           new discord.EmbedBuilder()
@@ -170,7 +124,7 @@ manager.on("shardCreate", async (shard) => {
   });
 
   shard.on("shardDisconnect", async (event) => {
-    await shardLogs.send({
+    await HookLogger.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -188,7 +142,7 @@ manager.on("shardCreate", async (shard) => {
   });
 
   shard.on("shardReconnecting", async () => {
-    await shardLogs.send({
+    await HookLogger.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -206,16 +160,6 @@ manager.on("shardCreate", async (shard) => {
 
 manager.spawn();
 
-const consoleLogs = new discord.WebhookClient({
-  id: webhook.consoleLogs.id,
-  token: webhook.consoleLogs.token,
-});
-
-const warnLogs = new discord.WebhookClient({
-  id: webhook.warnLogs.id,
-  token: webhook.warnLogs.token,
-});
-
 process.on("unhandledRejection", async (error) => {
   console.error("Unhandled promise rejection:", error);
   if (error && error.length > 950)
@@ -223,48 +167,44 @@ process.on("unhandledRejection", async (error) => {
   if (error.stack && error.stack.length > 950)
     error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
-  await consoleLogs
-    .send({
-      username: "Bot Logs",
-      embeds: [
-        new discord.EmbedBuilder()
-          .setTitle("🚨・Unhandled promise rejection")
-          .addFields([
-            {
-              name: "Error",
-              value: error ? discord.codeBlock(error) : "No error",
-            },
-            {
-              name: "Stack error",
-              value: error.stack
-                ? discord.codeBlock(error.stack)
-                : "No stack error",
-            },
-          ]),
-      ],
-    })
-    .catch(() => {
-      console.log("Error sending unhandled promise rejection to webhook");
-      console.log(error);
-    });
+  await HookLogger.send({
+    username: "Bot Logs",
+    embeds: [
+      new discord.EmbedBuilder()
+        .setTitle("🚨・Unhandled promise rejection")
+        .addFields([
+          {
+            name: "Error",
+            value: error ? discord.codeBlock(error) : "No error",
+          },
+          {
+            name: "Stack error",
+            value: error.stack
+              ? discord.codeBlock(error.stack)
+              : "No stack error",
+          },
+        ]),
+    ],
+  }).catch(() => {
+    console.log("Error sending unhandled promise rejection to webhook");
+    console.log(error);
+  });
 });
 
 process.on("warning", async (warn) => {
   console.warn("Warning:", warn);
-  await warnLogs
-    .send({
-      username: "Bot Logs",
-      embeds: [
-        new discord.EmbedBuilder().setTitle("🚨・New warning found").addFields([
-          {
-            name: "Warn",
-            value: "```" + warn + "```",
-          },
-        ]),
-      ],
-    })
-    .catch(() => {
-      console.log("Error sending warning to webhook");
-      console.log(warn);
-    });
+  await HookLogger.send({
+    username: "Bot Logs",
+    embeds: [
+      new discord.EmbedBuilder().setTitle("🚨・New warning found").addFields([
+        {
+          name: "Warn",
+          value: "```" + warn + "```",
+        },
+      ]),
+    ],
+  }).catch(() => {
+    console.log("Error sending warning to webhook");
+    console.log(warn);
+  });
 });

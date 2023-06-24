@@ -36,8 +36,8 @@ const Schema40 = require("../../database/models/messageRewards");
 
 module.exports = async (client, guild) => {
   const kickLogs = new discord.WebhookClient({
-    id: client.webhooks.serverLogs2.id,
-    token: client.webhooks.serverLogs2.token,
+    id: client.webhooks.HookLogger.id,
+    token: client.webhooks.HookLogger.token,
   });
 
   if (guild.name == undefined) return;

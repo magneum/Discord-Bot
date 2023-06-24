@@ -8,20 +8,20 @@
 
 // const disbot = async () => {
 // const tableNames = [
-// "startLogs",
-// "shardLogs",
-// "errorLogs",
-// "dmLogs",
-// "voiceLogs",
-// "serverLogs",
-// "serverLogs2",
-// "commandLogs",
-// "consoleLogs",
-// "warnLogs",
-// "voiceErrorLogs",
-// "creditLogs",
-// "evalLogs",
-// "interactionLogs",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
+// "HookLogger",
 // ];
 
 // const createTablesIfNotExist = async () => {
@@ -71,20 +71,20 @@
 // }
 // };
 
-// const startLogs = {
-// tableName: webhook.startLogs,
+// const HookLogger = {
+// tableName: webhook.HookLogger,
 // };
 
-// const shardLogs = {
-// tableName: webhook.shardLogs,
+// const HookLogger = {
+// tableName: webhook.HookLogger,
 // };
 
-// const consoleLogs = {
-// tableName: webhook.consoleLogs,
+// const HookLogger = {
+// tableName: webhook.HookLogger,
 // };
 
-// const warnLogs = {
-// tableName: webhook.warnLogs,
+// const HookLogger = {
+// tableName: webhook.HookLogger,
 // };
 
 // const manager = new discord.ShardingManager("./heart.js", {
@@ -109,7 +109,7 @@
 // chalk.white("...")
 // );
 // console.log(
-// chalk.bold.blue("© MagneumDev | 2021 - " + new Date().getFullYear())
+// chalk.bold.blue("© Magneum | 2021 - " + new Date().getFullYear())
 // );
 // console.log(chalk.bold.blue("All rights reserved"));
 // console.log("\u001b[0m");
@@ -124,7 +124,7 @@
 // );
 
 // manager.on("shardCreate", async (shard) => {
-// await sendLog(startLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -156,7 +156,7 @@
 // );
 
 // shard.on("death", async (process) => {
-// await sendLog(shardLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -176,7 +176,7 @@
 
 // switch (process.exitCode === null) {
 // case true:
-// await sendLog(shardLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -204,7 +204,7 @@
 // });
 
 // shard.on("shardDisconnect", async (event) => {
-// await sendLog(shardLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -219,7 +219,7 @@
 // });
 
 // shard.on("shardReconnecting", async () => {
-// await sendLog(shardLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -242,7 +242,7 @@
 // if (error.stack && error.stack.length > 950)
 // error.stack = error.stack.slice(0, 950) + "... view console for details";
 // if (!error.stack) return;
-// await sendLog(consoleLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -266,7 +266,7 @@
 
 // process.on("warning", async (warn) => {
 // console.warn(chalk.bold.yellow("Warning:"), warn);
-// await sendLog(warnLogs.tableName, {
+// await sendLog(HookLogger.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {

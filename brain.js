@@ -1,13 +1,11 @@
-const discord = require("discord.js");
 const fs = require("fs");
-
+const discord = require("discord.js");
 const { Manager } = require("erela.js");
-const Spotify = require("erela.js-spotify");
-const Facebook = require("erela.js-facebook");
 const Deezer = require("erela.js-deezer");
+const Spotify = require("erela.js-spotify");
 const AppleMusic = require("erela.js-apple");
+const Facebook = require("erela.js-facebook");
 
-// discord client
 const client = new discord.Client({
   allowedMentions: {
     parse: ["users", "roles"],
@@ -61,7 +59,7 @@ if (clientID && clientSecret) {
       {
         host: process.env.LAVALINK_HOST || "lava.link",
         port: parseInt(process.env.LAVALINK_PORT) || 80,
-        password: process.env.LAVALINK_PASSWORD || "MagneumDev",
+        password: process.env.LAVALINK_PASSWORD || "Magneum",
         secure: Boolean(process.env.LAVALINK_SECURE) || false,
       },
       {
@@ -82,7 +80,7 @@ if (clientID && clientSecret) {
       {
         host: process.env.LAVALINK_HOST || "lava.link",
         port: parseInt(process.env.LAVALINK_PORT) || 80,
-        password: process.env.LAVALINK_PASSWORD || "MagneumDev",
+        password: process.env.LAVALINK_PASSWORD || "Magneum",
         secure: Boolean(process.env.LAVALINK_SECURE) || false,
       },
     ],
@@ -103,55 +101,25 @@ for (const file of events) {
     .setMaxListeners(0);
 }
 
-// Connect to database
 require("./database/connect")();
 
-// Client settings
 client.config = require("./config/bot");
 client.changelogs = require("./config/changelogs");
 client.emotes = require("./database/json/emojis.json");
 client.webhooks = require("./database/json/webhooks.json");
-const webHooksArray = [
-  "startLogs",
-  "shardLogs",
-  "errorLogs",
-  "dmLogs",
-  "voiceLogs",
-  "serverLogs",
-  "serverLogs2",
-  "commandLogs",
-  "consoleLogs",
-  "warnLogs",
-  "voiceErrorLogs",
-  "creditLogs",
-  "evalLogs",
-  "interactionLogs",
-];
-// Check if .env webhook_id and webhook_token are set
-if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
-  for (const webhookName of webHooksArray) {
-    client.webhooks[webhookName].id = process.env.WEBHOOK_ID;
-    client.webhooks[webhookName].token = process.env.WEBHOOK_TOKEN;
-  }
-}
+client.webhooks["HookLogger"].id = process.env.WEBHOOK_ID;
+client.webhooks["HookLogger"].token = process.env.WEBHOOK_TOKEN;
 
 client.commands = new discord.Collection();
 client.playerManager = new Map();
 client.triviaManager = new Map();
 client.queue = new Map();
 
-// Webhooks
-const consoleLogs = new discord.WebhookClient({
-  id: client.webhooks.consoleLogs.id,
-  token: client.webhooks.consoleLogs.token,
+const HookLogger = new discord.WebhookClient({
+  id: client.webhooks.HookLogger.id,
+  token: client.webhooks.HookLogger.token,
 });
 
-const warnLogs = new discord.WebhookClient({
-  id: client.webhooks.warnLogs.id,
-  token: client.webhooks.warnLogs.token,
-});
-
-// Load handlers
 fs.readdirSync("./handlers").forEach((dir) => {
   fs.readdirSync(`./handlers/${dir}`).forEach((handler) => {
     require(`./handlers/${dir}/${handler}`)(client);
@@ -182,15 +150,13 @@ process.on("unhandledRejection", (error) => {
       },
     ])
     .setColor("#5865F2");
-  consoleLogs
-    .send({
-      username: "Bot Logs",
-      embeds: [embed],
-    })
-    .catch(() => {
-      console.log("Error sending unhandledRejection to webhook");
-      console.log(error);
-    });
+  HookLogger.send({
+    username: "Bot Logs",
+    embeds: [embed],
+  }).catch(() => {
+    console.log("Error sending unhandledRejection to webhook");
+    console.log(error);
+  });
 });
 
 process.on("warning", (warn) => {
@@ -204,15 +170,13 @@ process.on("warning", (warn) => {
       },
     ])
     .setColor("#5865F2");
-  warnLogs
-    .send({
-      username: "Bot Logs",
-      embeds: [embed],
-    })
-    .catch(() => {
-      console.log("Error sending warning to webhook");
-      console.log(warn);
-    });
+  HookLogger.send({
+    username: "Bot Logs",
+    embeds: [embed],
+  }).catch(() => {
+    console.log("Error sending warning to webhook");
+    console.log(warn);
+  });
 });
 
 client.on(discord.ShardEvents.Error, (error) => {
@@ -237,7 +201,7 @@ client.on(discord.ShardEvents.Error, (error) => {
       },
     ])
     .setColor("#5865F2");
-  consoleLogs.send({
+  HookLogger.send({
     username: "Bot Logs",
     embeds: [embed],
   });
