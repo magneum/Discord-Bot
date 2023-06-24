@@ -70,10 +70,10 @@ if (process.env.TOPGG_TOKEN) {
 
 console.clear();
 console.log(
-  chalk.blue(chalk.bold("System")),
-  chalk.white(">>"),
-  chalk.green("Starting up"),
-  chalk.white("...")
+  chalk.blue.bold("System") +
+    chalk.white(">>") +
+    chalk.green("Starting up") +
+    chalk.white("...")
 );
 console.log("\u001b[0m");
 console.log(chalk.red("© MagneumDev | 2021 - " + new Date().getFullYear()));
@@ -81,10 +81,10 @@ console.log(chalk.red("All rights reserved"));
 console.log("\u001b[0m");
 console.log("\u001b[0m");
 console.log(
-  chalk.blue(chalk.bold("System")),
-  chalk.white(">>"),
-  chalk.red("Version " + require(`${process.cwd()}/package.json`).version),
-  chalk.green("loaded")
+  chalk.blue.bold("System") +
+    chalk.white(">>") +
+    chalk.red("Version " + require(`${process.cwd()}/package.json`).version) +
+    chalk.green("loaded")
 );
 console.log("\u001b[0m");
 
@@ -112,11 +112,11 @@ manager.on("shardCreate", async (shard) => {
   });
 
   console.log(
-    chalk.blue(chalk.bold("System")),
-    chalk.white(">>"),
-    chalk.green("Starting"),
-    chalk.red("Shard #" + (shard.id + 1)),
-    chalk.white("...")
+    chalk.blue.bold("System") +
+      chalk.white(">>") +
+      chalk.green("Starting") +
+      chalk.red("Shard #" + (shard.id + 1)) +
+      chalk.white("...")
   );
   console.log("\u001b[0m");
 
