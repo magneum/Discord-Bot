@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-
 const Functions = require("../../database/models/functions");
 
 module.exports = async (client, guild) => {
@@ -92,7 +91,7 @@ module.exports = async (client, guild) => {
           {
             name: "❓┆How to setup?",
             value:
-              "The default prefix = `/` \nTo run setups with Bot run `/setup`",
+              "The default prefix = `/`\nTo run setups with Bot run `/setup`",
             inline: false,
           },
           {

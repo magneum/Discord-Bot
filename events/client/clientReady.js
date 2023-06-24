@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const chalk = require("chalk");
-const { random } = require("mathjs");
 
 module.exports = async (client) => {
   const startLogs = new Discord.WebhookClient({
@@ -8,31 +7,31 @@ module.exports = async (client) => {
     token: client.webhooks.startLogs.token,
   });
 
-  console.log(`\u001b[0m`);
+  console.log("\u001b[0m");
   console.log(
-    chalk.blue(chalk.bold(`System`)),
-    chalk.white(`>>`),
-    chalk.red(`Shard #${client.shard.ids[0] + 1}`),
-    chalk.green(`is ready!`)
+    chalk.blue(chalk.bold("System")) +
+      chalk.white(">>") +
+      chalk.red(`Shard #${client.shard.ids[0] + 1}`) +
+      chalk.green("is ready!")
   );
   console.log(
-    chalk.blue(chalk.bold(`Bot`)),
-    chalk.white(`>>`),
-    chalk.green(`Started on`),
-    chalk.red(`${client.guilds.cache.size}`),
-    chalk.green(`servers!`)
+    chalk.blue(chalk.bold("Bot")) +
+      chalk.white(">>") +
+      chalk.green("Started on") +
+      chalk.red(`${client.guilds.cache.size}`) +
+      chalk.green("servers!")
   );
 
   let embed = new Discord.EmbedBuilder()
-    .setTitle(`🆙・Finishing shard`)
-    .setDescription(`A shard just finished`)
+    .setTitle("🆙・Finishing shard")
+    .setDescription("A shard just finished")
     .addFields(
       {
         name: "🆔┆ID",
         value: `${client.shard.ids[0] + 1}/${client.options.shardCount}`,
         inline: true,
       },
-      { name: "📃┆State", value: `Ready`, inline: true }
+      { name: "📃┆State", value: "Ready", inline: true }
     )
     .setColor(client.config.colors.normal);
   startLogs.send({
@@ -52,10 +51,10 @@ module.exports = async (client) => {
         statuttext = process.env.DISCORD_STATUS.split(", ");
       } else {
         statuttext = [
-          `・❓┆/help`,
+          "・❓┆/help",
           `・💻┆${totalGuilds} servers`,
-          `・📨┆discord.gg/corwindev`,
-          `・🎉┆400+ commands`,
+          "・📨┆discord.gg/corwindev",
+          "・🎉┆400+ commands",
           `・🏷️┆Version ${require(`${process.cwd()}/package.json`).version}`,
         ];
       }
