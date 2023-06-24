@@ -1,10 +1,9 @@
-const webhook = require("./database/json/webhooks.json");
-const config = require("./config/bot.js");
-const discord = require("discord.js");
-require("dotenv").config("./.env");
 const chalk = require("chalk");
+require("dotenv").config("./.env");
+const discord = require("discord.js");
+const pgs = require("./config/pgs.js");
 
-const webHooksArray = [
+const tableNames = [
   "startLogs",
   "shardLogs",
   "errorLogs",
@@ -21,216 +20,229 @@ const webHooksArray = [
   "interactionLogs",
 ];
 
-if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
-  for (const webHook of webHooksArray) {
-    switch (webHook) {
-      case "startLogs":
-      case "shardLogs":
-      case "errorLogs":
-      case "dmLogs":
-      case "voiceLogs":
-      case "serverLogs":
-      case "serverLogs2":
-      case "commandLogs":
-      case "consoleLogs":
-      case "warnLogs":
-      case "voiceErrorLogs":
-      case "creditLogs":
-      case "evalLogs":
-      case "interactionLogs":
-        webhook[webHook].id = process.env.WEBHOOK_ID;
-        webhook[webHook].token = process.env.WEBHOOK_TOKEN;
-        break;
-      default:
-        break;
+const createTablesIfNotExist = async () => {
+  try {
+    for (const tableName of tableNames) {
+      const query = `
+CREATE TABLE IF NOT EXISTS ${tableName} (
+id SERIAL PRIMARY KEY,
+data JSONB
+);
+`;
+      await pgs.DATABASE.query(query);
+      console.log(`Table ${tableName} created or already exists.`);
     }
+  } catch (error) {
+    console.error("Error creating tables:", error);
   }
-}
+};
 
-const startLogs = new discord.WebhookClient({
-  token: webhook.startLogs.token,
-  id: webhook.startLogs.id,
-});
+const main = async () => {
+  try {
+    await pgs.DATABASE.authenticate();
+    console.log("Connected to PostgreSQL!");
+    await createTablesIfNotExist();
+  } catch (error) {
+    console.error("Failed to connect to PostgreSQL:", error);
+    return;
+  }
 
-const shardLogs = new discord.WebhookClient({
-  token: webhook.shardLogs.token,
-  id: webhook.shardLogs.id,
-});
+  const webhook = {};
 
-const manager = new discord.ShardingManager("./brain.js", {
-  token: process.env.DISCORD_TOKEN,
-  totalShards: "auto",
-  respawn: true,
-});
+  for (const tableName of tableNames) {
+    webhook[tableName] = tableName;
+  }
+  const sendLog = async (tableName, logData) => {
+    const query = {
+      text: `INSERT INTO ${tableName} (data) VALUES ($1)`,
+      values: [JSON.stringify(logData)],
+    };
 
-if (process.env.TOPGG_TOKEN) {
-  const { AutoPoster } = require("topgg-autoposter");
-  AutoPoster(process.env.TOPGG_TOKEN, manager);
-}
+    try {
+      await pgs.DATABASE.query(query.text, query.values);
+    } catch (error) {
+      console.error(`Error inserting log into ${tableName}:`, error);
+    }
+  };
 
-console.clear();
-console.log(
-  chalk.blue.bold("System") +
-    chalk.white(">>") +
-    chalk.green("Starting up") +
-    chalk.white("...")
-);
-console.log("\u001b[0m");
-console.log(chalk.red("© MagneumDev | 2021 - " + new Date().getFullYear()));
-console.log(chalk.red("All rights reserved"));
-console.log("\u001b[0m");
-console.log("\u001b[0m");
-console.log(
-  chalk.blue.bold("System") +
-    chalk.white(">>") +
-    chalk.red("Version " + require(`${process.cwd()}/package.json`).version) +
-    chalk.green("loaded")
-);
-console.log("\u001b[0m");
+  const startLogs = {
+    tableName: webhook.startLogs,
+  };
 
-manager.on("shardCreate", async (shard) => {
-  await startLogs.send({
-    username: "Bot Logs",
-    embeds: [
-      new discord.EmbedBuilder()
-        .setTitle("🆙・Launching shard")
-        .setDescription("A shard has just been launched")
-        .setFields([
-          {
-            name: "🆔┆ID",
-            value: `${shard.id + 1}/${manager.totalShards}`,
-            inline: true,
-          },
-          {
-            name: "📃┆State",
-            value: "Starting up...",
-            inline: true,
-          },
-        ])
-        .setColor(config.colors.normal),
-    ],
+  const shardLogs = {
+    tableName: webhook.shardLogs,
+  };
+
+  const consoleLogs = {
+    tableName: webhook.consoleLogs,
+  };
+
+  const warnLogs = {
+    tableName: webhook.warnLogs,
+  };
+
+  const manager = new discord.ShardingManager("./brain.js", {
+    token: process.env.DISCORD_TOKEN,
+    totalShards: "auto",
+    respawn: true,
   });
+
+  if (process.env.TOPGG_TOKEN) {
+    const { AutoPoster } = require("topgg-autoposter");
+    AutoPoster(process.env.TOPGG_TOKEN, manager);
+  }
 
   console.log(
     chalk.blue.bold("System") +
       chalk.white(">>") +
-      chalk.green("Starting") +
-      chalk.red("Shard #" + (shard.id + 1)) +
+      chalk.green("Starting up") +
       chalk.white("...")
   );
   console.log("\u001b[0m");
+  console.log(chalk.red("© MagneumDev | 2021 - " + new Date().getFullYear()));
+  console.log(chalk.red("All rights reserved"));
+  console.log("\u001b[0m");
+  console.log("\u001b[0m");
+  console.log(
+    chalk.blue.bold("System") +
+      chalk.white(">>") +
+      chalk.red("Version " + require(`${process.cwd()}/package.json`).version) +
+      chalk.green("loaded")
+  );
+  console.log("\u001b[0m");
 
-  shard.on("death", async (process) => {
-    await shardLogs.send({
+  manager.on("shardCreate", async (shard) => {
+    const logData = {
       username: "Bot Logs",
       embeds: [
-        new discord.EmbedBuilder()
-          .setTitle(
-            "🚨・Closing shard " +
-              (shard.id + 1) +
-              "/" +
-              manager.totalShards +
-              " unexpectedly"
-          )
-          .setFields([
+        {
+          title: "🆙・Launching shard",
+          description: "A shard has just been launched",
+          fields: [
             {
               name: "🆔┆ID",
               value: `${shard.id + 1}/${manager.totalShards}`,
+              inline: true,
             },
-          ])
-          .setColor(config.colors.normal),
+            {
+              name: "📃┆State",
+              value: "Starting up...",
+              inline: true,
+            },
+          ],
+          color: "#5865F2",
+        },
       ],
-    });
+    };
 
-    if (process.exitCode === null) {
-      await shardLogs.send({
+    await sendLog(startLogs.tableName, logData);
+
+    console.log(
+      chalk.blue.bold("System") +
+        chalk.white(">>") +
+        chalk.green("Starting") +
+        chalk.red("Shard #" + (shard.id + 1)) +
+        chalk.white("...")
+    );
+    console.log("\u001b[0m");
+
+    shard.on("death", async (process) => {
+      const logData = {
         username: "Bot Logs",
         embeds: [
-          new discord.EmbedBuilder()
-            .setTitle(
-              "🚨・Shard " +
-                (shard.id + 1) +
-                "/" +
-                manager.totalShards +
-                " exited with NULL error code!"
-            )
-            .setFields([
-              {
-                name: "PID",
-                value: "`" + process.pid + "`",
-              },
-              {
-                name: "Exit code",
-                value: "`" + process.exitCode + "`",
-              },
-            ])
-            .setColor(config.colors.normal),
-        ],
-      });
-    }
-  });
-
-  shard.on("shardDisconnect", async (event) => {
-    await shardLogs.send({
-      username: "Bot Logs",
-      embeds: [
-        new discord.EmbedBuilder()
-          .setTitle(
-            "🚨・Shard " +
-              (shard.id + 1) +
-              "/" +
-              manager.totalShards +
-              " disconnected"
-          )
-          .setDescription("Dumping socket close event...")
-          .setColor(config.colors.normal),
-      ],
-    });
-  });
-
-  shard.on("shardReconnecting", async () => {
-    await shardLogs.send({
-      username: "Bot Logs",
-      embeds: [
-        new discord.EmbedBuilder()
-          .setTitle(
-            "🚨・Reconnecting shard " +
-              (shard.id + 1) +
-              "/" +
+          {
+            title: `🚨・Closing shard ${shard.id + 1}/${
               manager.totalShards
-          )
-          .setColor(config.colors.normal),
-      ],
+            } unexpectedly`,
+            fields: [
+              {
+                name: "🆔┆ID",
+                value: `${shard.id + 1}/${manager.totalShards}`,
+              },
+            ],
+            color: "#5865F2",
+          },
+        ],
+      };
+
+      await sendLog(shardLogs.tableName, logData);
+
+      if (process.exitCode === null) {
+        const logData = {
+          username: "Bot Logs",
+          embeds: [
+            {
+              title: `🚨・Shard ${shard.id + 1}/${
+                manager.totalShards
+              } exited with NULL error code!`,
+              fields: [
+                {
+                  name: "PID",
+                  value: "`" + process.pid + "`",
+                },
+                {
+                  name: "Exit code",
+                  value: "`" + process.exitCode + "`",
+                },
+              ],
+              color: "#5865F2",
+            },
+          ],
+        };
+
+        await sendLog(shardLogs.tableName, logData);
+      }
+    });
+
+    shard.on("shardDisconnect", async (event) => {
+      const logData = {
+        username: "Bot Logs",
+        embeds: [
+          {
+            title: `🚨・Shard ${shard.id + 1}/${
+              manager.totalShards
+            } disconnected`,
+            description: "Dumping socket close event...",
+            color: "#5865F2",
+          },
+        ],
+      };
+
+      await sendLog(shardLogs.tableName, logData);
+    });
+
+    shard.on("shardReconnecting", async () => {
+      const logData = {
+        username: "Bot Logs",
+        embeds: [
+          {
+            title: `🚨・Reconnecting shard ${shard.id + 1}/${
+              manager.totalShards
+            }`,
+            color: "#5865F2",
+          },
+        ],
+      };
+
+      await sendLog(shardLogs.tableName, logData);
     });
   });
-});
 
-manager.spawn();
+  manager.spawn();
 
-const consoleLogs = new discord.WebhookClient({
-  id: webhook.consoleLogs.id,
-  token: webhook.consoleLogs.token,
-});
-
-const warnLogs = new discord.WebhookClient({
-  id: webhook.warnLogs.id,
-  token: webhook.warnLogs.token,
-});
-
-process.on("unhandledRejection", async (error) => {
-  console.error("Unhandled promise rejection:", error);
-  if (error && error.length > 950)
-    error = error.slice(0, 950) + "... view console for details";
-  if (error.stack && error.stack.length > 950)
-    error.stack = error.stack.slice(0, 950) + "... view console for details";
-  if (!error.stack) return;
-  await consoleLogs
-    .send({
+  process.on("unhandledRejection", async (error) => {
+    console.error("Unhandled promise rejection:", error);
+    if (error && error.length > 950)
+      error = error.slice(0, 950) + "... view console for details";
+    if (error.stack && error.stack.length > 950)
+      error.stack = error.stack.slice(0, 950) + "... view console for details";
+    if (!error.stack) return;
+    const logData = {
       username: "Bot Logs",
       embeds: [
-        new discord.EmbedBuilder()
-          .setTitle("🚨・Unhandled promise rejection")
-          .addFields([
+        {
+          title: "🚨・Unhandled promise rejection",
+          fields: [
             {
               name: "Error",
               value: error ? discord.codeBlock(error) : "No error",
@@ -241,31 +253,36 @@ process.on("unhandledRejection", async (error) => {
                 ? discord.codeBlock(error.stack)
                 : "No stack error",
             },
-          ]),
+          ],
+        },
       ],
-    })
-    .catch(() => {
-      console.log("Error sending unhandled promise rejection to webhook");
-      console.log(error);
-    });
-});
+    };
 
-process.on("warning", async (warn) => {
-  console.warn("Warning:", warn);
-  await warnLogs
-    .send({
+    await sendLog(consoleLogs.tableName, logData);
+  });
+
+  process.on("warning", async (warn) => {
+    console.warn("Warning:", warn);
+    const logData = {
       username: "Bot Logs",
       embeds: [
-        new discord.EmbedBuilder().setTitle("🚨・New warning found").addFields([
-          {
-            name: "Warn",
-            value: "```" + warn + "```",
-          },
-        ]),
+        {
+          title: "🚨・New warning found",
+          fields: [
+            {
+              name: "Warn",
+              value: "```" + warn + "```",
+            },
+          ],
+        },
       ],
-    })
-    .catch(() => {
-      console.log("Error sending warning to webhook");
-      console.log(warn);
-    });
+    };
+
+    await sendLog(warnLogs.tableName, logData);
+  });
+};
+
+console.clear();
+main().catch((error) => {
+  console.error("Error:", error);
 });

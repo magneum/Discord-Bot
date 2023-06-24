@@ -49,7 +49,7 @@ module.exports = (client) => {
     try {
       const embed = new discord.EmbedBuilder()
         .setDescription(`Started refreshing application (/) commands.`)
-        .setColor(client.config.colors.normal);
+        .setColor(client."#5865F2");
       interactionLogs.send({
         username: "Bot Logs",
         embeds: [embed],
@@ -63,7 +63,7 @@ module.exports = (client) => {
         .setDescription(
           `Successfully reloaded ${commands.length} application (/) commands.`
         )
-        .setColor(client.config.colors.normal);
+        .setColor(client."#5865F2");
       interactionLogs.send({
         username: "Bot Logs",
         embeds: [embedFinal],

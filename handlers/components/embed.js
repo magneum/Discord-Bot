@@ -15,7 +15,7 @@ module.exports = (client) => {
         name: client.user.username,
         iconURL: client.user.avatarURL({ size: 1024 }),
       })
-      .setColor(client.config.colors.normal)
+      .setColor(client."#5865F2")
       .setFooter({
         text: client.config.discord.footer,
         iconURL: client.user.avatarURL({ size: 1024 }),
@@ -44,7 +44,7 @@ module.exports = (client) => {
       name: "💬┆Error comment",
       value: `\`\`\`${error}\`\`\``,
     });
-    embed.setColor(client.config.colors.error);
+    embed.setColor(client."#ED4245");
 
     return client.sendEmbed(
       {
@@ -74,7 +74,7 @@ module.exports = (client) => {
       name: "💬┆Required arguments",
       value: `\`\`\`${usage}\`\`\``,
     });
-    embed.setColor(client.config.colors.error);
+    embed.setColor(client."#ED4245");
 
     return client.sendEmbed(
       {
@@ -105,7 +105,7 @@ module.exports = (client) => {
       name: "🔑┆Required Permission",
       value: `\`\`\`${perms}\`\`\``,
     });
-    embed.setColor(client.config.colors.error);
+    embed.setColor(client."#ED4245");
 
     return client.sendEmbed(
       {
@@ -136,7 +136,7 @@ module.exports = (client) => {
       name: "🔑┆Required Permission",
       value: `\`\`\`${perms}\`\`\``,
     });
-    embed.setColor(client.config.colors.error);
+    embed.setColor(client."#ED4245");
 
     return client.sendEmbed(
       {
@@ -164,7 +164,7 @@ module.exports = (client) => {
     embed.setTitle(`${client.emotes.normal.error}・Error!`);
     embed.setDescription(`You've already done this once`);
     embed.addFields({ name: "⏰┆Try again on", value: `<t:${time}:f>` });
-    embed.setColor(client.config.colors.error);
+    embed.setColor(client."#ED4245");
 
     return client.sendEmbed(
       {
@@ -195,7 +195,7 @@ module.exports = (client) => {
   ) {
     embed.setTitle(`${client.emotes.normal.check}・Success!`);
     embed.setDescription(`${text}`);
-    embed.setColor(client.config.colors.succes);
+    embed.setColor(client."#57F287");
 
     if (fields) embed.addFields(fields);
 
@@ -279,7 +279,7 @@ module.exports = (client) => {
     const functiondata = await Schema.findOne({ Guild: interaction.guild.id });
 
     let embed = new discord.EmbedBuilder().setColor(
-      client.config.colors.normal
+      client."#5865F2"
     );
 
     if (title) embed.setTitle(title);

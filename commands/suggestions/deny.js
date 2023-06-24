@@ -27,7 +27,7 @@ module.exports = async (client, interaction, args) => {
       {
         title: `${client.emotes.normal.error}・Suggestion denied`,
         desc: `\`\`\`${embedData.description}\`\`\``,
-        color: client.config.colors.error,
+        color: client."#ED4245",
         author: {
           name: embedData.author.name,
           iconURL: embedData.author.iconURL,

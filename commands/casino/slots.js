@@ -61,7 +61,7 @@ module.exports = async (client, interaction, args) => {
             {
               title: `🎰・Slots`,
               desc: `You won **${client.emotes.economy.coins} $${money}**`,
-              color: client.config.colors.succes,
+              color: client."#57F287",
               components: [row],
               type: "editreply",
             },
@@ -76,7 +76,7 @@ module.exports = async (client, interaction, args) => {
               title: `🎰・Slots`,
               desc: `You lost **${client.emotes.economy.coins} $${money}**`,
               components: [row],
-              color: client.config.colors.error,
+              color: client."#ED4245",
               type: "editreply",
             },
             interaction

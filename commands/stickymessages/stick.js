@@ -8,7 +8,7 @@ module.exports = async (client, interaction, args) => {
 
   const embed = new discord.EmbedBuilder()
     .setDescription(`${content}`)
-    .setColor(client.config.colors.normal);
+    .setColor(client."#5865F2");
   channel.send({ embeds: [embed] }).then((msg) => {
     db.findOne(
       { Guild: interaction.guild.id, Channel: channel.id },

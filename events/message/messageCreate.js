@@ -43,7 +43,7 @@ module.exports = async (client, message) => {
           inline: true,
         }
       )
-      .setColor(client.config.colors.normal)
+      .setColor(client."#5865F2")
       .setTimestamp();
 
     if (message.attachments.size > 0)

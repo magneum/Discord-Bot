@@ -39,8 +39,8 @@ module.exports = (client) => {
     {
       default: {
         botsCanWin: false,
-        embedColor: client.config.colors.normal,
-        embedColorEnd: client.config.colors.error,
+        embedColor: client."#5865F2",
+        embedColorEnd: client."#ED4245",
         reaction: "🥳",
       },
     },

@@ -16,7 +16,7 @@ module.exports = async (client, interaction, args) => {
       inline: true,
     })
     .setDescription(`${feedback}`)
-    .setColor(client.config.colors.normal);
+    .setColor(client."#5865F2");
   webhookClient.send({
     username: "Bot Feedback",
     embeds: [embed],

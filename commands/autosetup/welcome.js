@@ -21,7 +21,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.roles
       .create({
         name: "Member",
-        color: client.config.colors.normal,
+        color: client."#5865F2",
       })
       .then((rl) => {
         client.createRoleSetup(welcomeRole, rl, interaction);

@@ -70,7 +70,7 @@ module.exports = async (client, guild) => {
       .setThumbnail(
         "https://cdn.discordapp.com/attachments/843487478881976381/852419424895631370/BotSadEmote.png"
       )
-      .setColor(client.config.colors.normal);
+      .setColor(client."#5865F2");
     kickLogs.send({
       username: "Bot Logs",
       avatarURL: client.user.avatarURL(),

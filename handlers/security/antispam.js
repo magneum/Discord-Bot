@@ -40,7 +40,7 @@ module.exports = async (client) => {
                     {
                       title: `${client.emotes.normal.error}・Moderator`,
                       desc: `It is not allowed to spam in this server!`,
-                      color: client.config.colors.error,
+                      color: client."#ED4245",
                       content: `${message.author}`,
                     },
                     message.channel

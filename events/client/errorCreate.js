@@ -27,7 +27,7 @@ module.exports = async (client, err, command, interaction) => {
         value: `\`\`\`${err.stack.substr(0, 1018)}\`\`\``,
       }
     )
-    .setColor(client.config.colors.normal);
+    .setColor(client."#5865F2");
 
   try {
     await errorlog.send({
@@ -50,7 +50,7 @@ module.exports = async (client, err, command, interaction) => {
       {
         title: `${client.emotes.normal.error}・Error`,
         desc: `There was an error executing this command`,
-        color: client.config.colors.error,
+        color: client."#ED4245",
         fields: [
           {
             name: `Error code`,
@@ -73,7 +73,7 @@ module.exports = async (client, err, command, interaction) => {
       {
         title: `${client.emotes.normal.error}・Error`,
         desc: `There was an error executing this command`,
-        color: client.config.colors.error,
+        color: client."#ED4245",
         fields: [
           {
             name: `Error code`,

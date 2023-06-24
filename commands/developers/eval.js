@@ -60,7 +60,7 @@ module.exports = async (client, interaction, args) => {
             inline: false,
           }
         )
-        .setColor(client.config.colors.normal)
+        .setColor(client."#5865F2")
         .setTimestamp();
       webhookClientLogs.send({
         username: "Bot Logs",
@@ -78,7 +78,7 @@ module.exports = async (client, interaction, args) => {
           value: `\`\`\`${code}\`\`\``,
           inline: false,
         })
-        .setColor(client.config.colors.succes)
+        .setColor(client."#57F287")
         .setFooter(client.config.discord.footer)
         .setTimestamp();
       interaction.editreply({ embeds: [embed2] });

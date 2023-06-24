@@ -34,7 +34,7 @@ module.exports = (client) => {
                       {
                         title: `${client.emotes.normal.error}・Moderator`,
                         desc: `discord links are not allowed in this server!`,
-                        color: client.config.colors.error,
+                        color: client."#ED4245",
                         content: `${message.author}`,
                       },
                       message.channel
@@ -52,7 +52,7 @@ module.exports = (client) => {
                       {
                         title: `${client.emotes.normal.error}・Moderator`,
                         desc: `discord links are not allowed in this server!`,
-                        color: client.config.colors.error,
+                        color: client."#ED4245",
                         content: `${message.author}`,
                       },
                       message.channel
@@ -88,7 +88,7 @@ module.exports = (client) => {
                       {
                         title: `${client.emotes.normal.error}・Moderator`,
                         desc: `Links are not allowed in this server!`,
-                        color: client.config.colors.error,
+                        color: client."#ED4245",
                         content: `${message.author}`,
                       },
                       message.channel
@@ -106,7 +106,7 @@ module.exports = (client) => {
                       {
                         title: `${client.emotes.normal.error}・Moderator`,
                         desc: `Links are not allowed in this server!`,
-                        color: client.config.colors.error,
+                        color: client."#ED4245",
                         content: `${message.author}`,
                       },
                       message.channel
@@ -156,7 +156,7 @@ module.exports = (client) => {
                       .setDescription(
                         `discord links are not allowed in this server!`
                       )
-                      .setColor(client.config.colors.error)
+                      .setColor(client."#ED4245")
                       .setFooter({ text: client.config.discord.footer })
                       .setTimestamp();
                     var msg = newMessage.channel.send({
@@ -184,7 +184,7 @@ module.exports = (client) => {
                       .setDescription(
                         `discord links are not allowed in this server!`
                       )
-                      .setColor(client.config.colors.error)
+                      .setColor(client."#ED4245")
                       .setFooter({ text: client.config.discord.footer })
                       .setTimestamp();
                     var msg = newMessage.channel.send({
@@ -228,7 +228,7 @@ module.exports = (client) => {
                       .setTitle(`${client.emotes.normal.error}・Moderator`)
                       .setAuthor(client.user.username, client.user.avatarURL())
                       .setDescription(`Links are not allowed in this server!`)
-                      .setColor(client.config.colors.error)
+                      .setColor(client."#ED4245")
                       .setFooter({ text: client.config.discord.footer })
                       .setTimestamp();
                     var msg = newMessage.channel.send({
@@ -254,7 +254,7 @@ module.exports = (client) => {
                       .setTitle(`${client.emotes.normal.error}・Moderator`)
                       .setAuthor(client.user.username, client.user.avatarURL())
                       .setDescription(`Links are not allowed in this server!`)
-                      .setColor(client.config.colors.error)
+                      .setColor(client."#ED4245")
                       .setFooter({ text: client.config.discord.footer })
                       .setTimestamp();
                     var msg = newMessage.channel.send({

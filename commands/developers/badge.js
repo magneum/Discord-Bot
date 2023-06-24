@@ -107,7 +107,7 @@ module.exports = async (client, interaction, args) => {
           inline: true,
         }
       )
-      .setColor(client.config.colors.normal)
+      .setColor(client."#5865F2")
       .setFooter({ text: client.config.discord.footer })
       .setTimestamp();
     webhookClientLogs.send({
@@ -177,7 +177,7 @@ module.exports = async (client, interaction, args) => {
           inline: true,
         }
       )
-      .setColor(client.config.colors.normal)
+      .setColor(client."#5865F2")
       .setFooter({ text: client.config.discord.footer })
       .setTimestamp();
     webhookClientLogs.send({
