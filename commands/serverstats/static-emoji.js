@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/stats");
 
@@ -31,10 +31,10 @@ module.exports = async (client, interaction, args) => {
   await interaction.guild.channels
     .create({
       name: channelName,
-      type: Discord.ChannelType.GuildVoice,
+      type: discord.ChannelType.GuildVoice,
       permissionOverwrites: [
         {
-          deny: [Discord.PermissionsBitField.Flags.Connect],
+          deny: [discord.PermissionsBitField.Flags.Connect],
           id: interaction.guild.id,
         },
       ],

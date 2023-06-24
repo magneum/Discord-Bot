@@ -1,6 +1,6 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const model = require("../../database/models/badge");
 
 module.exports = {
@@ -146,7 +146,7 @@ module.exports = {
                       value: `Threats to other users of DDoS, Death, DoX, abuse, and other malicious threats are absolutely prohibited and disallowed.`,
                     },
                     {
-                      name: `9. Follow the Discord Community Guidelines`,
+                      name: `9. Follow the discord Community Guidelines`,
                       value: `You can find them here: https://discordapp.com/guidelines`,
                     },
                     {
@@ -470,7 +470,7 @@ module.exports = {
                   fields: [
                     {
                       name: `📃┆Requirements for participation`,
-                      value: `- Minimum 50 members in the server \n- No test servers \n- Following the Discord and Bot TOS \n- Active server`,
+                      value: `- Minimum 50 members in the server \n- No test servers \n- Following the discord and Bot TOS \n- Active server`,
                     },
                     {
                       name: `❓┆How does it work?`,

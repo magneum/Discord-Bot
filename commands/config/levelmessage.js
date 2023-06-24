@@ -1,12 +1,12 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/levelMessages");
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkUserPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-      perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+      flags: [discord.PermissionsBitField.Flags.ManageMessages],
+      perms: [discord.PermissionsBitField.Flags.ManageMessages],
     },
     interaction
   );

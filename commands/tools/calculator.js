@@ -1,13 +1,13 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const math = require("mathjs");
 
 module.exports = async (client, interaction, args) => {
   const createButton = (label, disabled, getRandomString) => {
-    let style = Discord.ButtonStyle.Secondary;
+    let style = discord.ButtonStyle.Secondary;
     if (label === "AC" || label === "DC" || label === "⌫") {
-      style = Discord.ButtonStyle.Danger;
+      style = discord.ButtonStyle.Danger;
     } else if (label === "=") {
-      style = Discord.ButtonStyle.Success;
+      style = discord.ButtonStyle.Success;
     } else if (
       label === "(" ||
       label === ")" ||
@@ -19,10 +19,10 @@ module.exports = async (client, interaction, args) => {
       label === "+" ||
       label === "."
     ) {
-      style = Discord.ButtonStyle.Primary;
+      style = discord.ButtonStyle.Primary;
     }
     if (disabled) {
-      const btn = new Discord.ButtonBuilder()
+      const btn = new discord.ButtonBuilder()
         .setLabel(label)
         .setStyle(style)
         .setDisabled();
@@ -33,7 +33,7 @@ module.exports = async (client, interaction, args) => {
       }
       return btn;
     } else {
-      const btn = new Discord.ButtonBuilder().setLabel(label).setStyle(style);
+      const btn = new discord.ButtonBuilder().setLabel(label).setStyle(style);
       if (label === "\u200b") {
         btn.setDisabled();
         btn.setCustomId(`${getRandomString(10)}`);
@@ -45,7 +45,7 @@ module.exports = async (client, interaction, args) => {
   };
 
   const addRow = (btns) => {
-    const row = new Discord.ActionRowBuilder();
+    const row = new discord.ActionRowBuilder();
     for (const btn of btns) {
       row.addComponents(btn);
     }
@@ -155,7 +155,7 @@ module.exports = async (client, interaction, args) => {
       }
 
       const calc = interaction.channel.createMessageComponentCollector({
-        componentType: Discord.ComponentType.Button,
+        componentType: discord.ComponentType.Button,
       });
 
       calc.on("collect", async (btn) => {

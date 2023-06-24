@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const voiceSchema = require("../../database/models/voice");
 const channelSchema = require("../../database/models/voiceChannels");
 
@@ -104,7 +104,7 @@ module.exports = (client, oldState, newState) => {
 
           const channel = await newState.guild.channels.create({
             name: "⌛",
-            type: Discord.ChannelType.GuildVoice,
+            type: discord.ChannelType.GuildVoice,
             parent: data.Category,
           });
 

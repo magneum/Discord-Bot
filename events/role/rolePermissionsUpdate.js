@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, role, oldPerms, newPerms) => {
   const logsChannel = await client.getLogs(role.guild.id);
@@ -17,7 +17,7 @@ module.exports = async (client, role, oldPerms, newPerms) => {
           {
             name: `> Before`,
             value: `- ${
-              new Discord.PermissionsBitField(oldPerms)
+              new discord.PermissionsBitField(oldPerms)
                 .toArray()
                 .toLocaleString()
                 .split(",")
@@ -27,7 +27,7 @@ module.exports = async (client, role, oldPerms, newPerms) => {
           {
             name: `> After`,
             value: `- ${
-              new Discord.PermissionsBitField(newPerms)
+              new discord.PermissionsBitField(newPerms)
                 .toArray()
                 .toLocaleString()
                 .split(",")

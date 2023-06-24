@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const chalk = require("chalk");
 
 module.exports = async (client) => {
-  const startLogs = new Discord.WebhookClient({
+  const startLogs = new discord.WebhookClient({
     id: client.webhooks.startLogs.id,
     token: client.webhooks.startLogs.token,
   });
@@ -22,7 +22,7 @@ module.exports = async (client) => {
       chalk.green("servers!")
   );
 
-  let embed = new Discord.EmbedBuilder()
+  let embed = new discord.EmbedBuilder()
     .setTitle("🆙・Finishing shard")
     .setDescription("A shard just finished")
     .addFields(
@@ -61,7 +61,7 @@ module.exports = async (client) => {
       const randomText =
         statuttext[Math.floor(Math.random() * statuttext.length)];
       client.user.setPresence({
-        activities: [{ name: randomText, type: Discord.ActivityType.Playing }],
+        activities: [{ name: randomText, type: discord.ActivityType.Playing }],
         status: "online",
       });
     });

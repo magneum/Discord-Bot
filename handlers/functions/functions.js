@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const fetch = require("node-fetch");
 
 const Functions = require("../../database/models/functions");
@@ -6,7 +6,7 @@ const VoiceSchema = require("../../database/models/voiceChannels");
 
 module.exports = async (client) => {
   client.bitfieldToName = function (bitfield) {
-    const permissions = new Discord.PermissionsBitField(bitfield);
+    const permissions = new discord.PermissionsBitField(bitfield);
     return permissions.toArray();
   };
   client.checkPerms = async function (
@@ -166,18 +166,18 @@ module.exports = async (client) => {
       .then(async (msg) => {
         if (lb.length <= 10) return;
 
-        let button1 = new Discord.ButtonBuilder()
+        let button1 = new discord.ButtonBuilder()
           .setCustomId("back_button")
           .setEmoji("⬅️")
-          .setStyle(Discord.ButtonStyle.Primary)
+          .setStyle(discord.ButtonStyle.Primary)
           .setDisabled(true);
 
-        let button2 = new Discord.ButtonBuilder()
+        let button2 = new discord.ButtonBuilder()
           .setCustomId("forward_button")
           .setEmoji("➡️")
-          .setStyle(Discord.ButtonStyle.Primary);
+          .setStyle(discord.ButtonStyle.Primary);
 
-        let row = new Discord.ActionRowBuilder().addComponents(
+        let row = new discord.ActionRowBuilder().addComponents(
           button1,
           button2
         );
@@ -189,7 +189,7 @@ module.exports = async (client) => {
 
         let currentIndex = 0;
         const collector = interaction.channel.createMessageComponentCollector({
-          componentType: Discord.ComponentType.Button,
+          componentType: discord.ComponentType.Button,
           time: 60000,
         });
 
@@ -199,22 +199,22 @@ module.exports = async (client) => {
               ? (currentIndex -= 10)
               : (currentIndex += 10);
 
-            let btn1 = new Discord.ButtonBuilder()
+            let btn1 = new discord.ButtonBuilder()
               .setCustomId("back_button")
               .setEmoji("⬅️")
-              .setStyle(Discord.ButtonStyle.Primary)
+              .setStyle(discord.ButtonStyle.Primary)
               .setDisabled(true);
 
-            let btn2 = new Discord.ButtonBuilder()
+            let btn2 = new discord.ButtonBuilder()
               .setCustomId("forward_button")
               .setEmoji("➡️")
-              .setStyle(Discord.ButtonStyle.Primary)
+              .setStyle(discord.ButtonStyle.Primary)
               .setDisabled(true);
 
             if (currentIndex !== 0) btn1.setDisabled(false);
             if (currentIndex + 10 < lb.length) btn2.setDisabled(false);
 
-            let row2 = new Discord.ActionRowBuilder().addComponents(btn1, btn2);
+            let row2 = new discord.ActionRowBuilder().addComponents(btn1, btn2);
 
             msg.edit({
               embeds: [
@@ -233,19 +233,19 @@ module.exports = async (client) => {
         });
 
         collector.on("end", async (btn) => {
-          let btn1Disable = new Discord.ButtonBuilder()
+          let btn1Disable = new discord.ButtonBuilder()
             .setCustomId("back_button")
             .setEmoji("⬅️")
-            .setStyle(Discord.ButtonStyle.Primary)
+            .setStyle(discord.ButtonStyle.Primary)
             .setDisabled(true);
 
-          let btn2Disable = new Discord.ButtonBuilder()
+          let btn2Disable = new discord.ButtonBuilder()
             .setCustomId("forward_button")
             .setEmoji("➡️")
-            .setStyle(Discord.ButtonStyle.Primary)
+            .setStyle(discord.ButtonStyle.Primary)
             .setDisabled(true);
 
-          let rowDisable = new Discord.ActionRowBuilder().addComponents(
+          let rowDisable = new discord.ActionRowBuilder().addComponents(
             btn1Disable,
             btn2Disable
           );
@@ -293,11 +293,11 @@ module.exports = async (client) => {
             interaction
           );
 
-        const row = new Discord.ActionRowBuilder().addComponents(
-          new Discord.ButtonBuilder()
+        const row = new discord.ActionRowBuilder().addComponents(
+          new discord.ButtonBuilder()
             .setLabel("Start activity")
             .setURL(`https://discord.gg/${invite.code}`)
-            .setStyle(Discord.ButtonStyle.Link)
+            .setStyle(discord.ButtonStyle.Link)
         );
 
         client.embed(

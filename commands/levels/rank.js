@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Canvacord = require("canvacord");
 
 const Functions = require("../../database/models/functions");
@@ -32,7 +32,7 @@ module.exports = async (client, interaction, args) => {
       .setRank(user.position);
 
     rankCard.build().then((data) => {
-      const attachment = new Discord.AttachmentBuilder(data, {
+      const attachment = new discord.AttachmentBuilder(data, {
         name: "RankCard.png",
       });
       interaction.editReply({ files: [attachment] });

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const { truncate } = require("fs/promises");
 const { decode } = require("html-entities");
 const fetch = require("node-fetch");
@@ -45,16 +45,16 @@ module.exports = async (client, interaction, args) => {
         },
       };
 
-      let btn = new Discord.ButtonBuilder()
-        .setStyle(Discord.ButtonStyle.Success)
+      let btn = new discord.ButtonBuilder()
+        .setStyle(discord.ButtonStyle.Success)
         .setLabel("Yes")
         .setCustomId(id1);
-      let btn2 = new Discord.ButtonBuilder()
-        .setStyle(Discord.ButtonStyle.Danger)
+      let btn2 = new discord.ButtonBuilder()
+        .setStyle(discord.ButtonStyle.Danger)
         .setLabel("No")
         .setCustomId(id2);
 
-      let row = new Discord.ActionRowBuilder().addComponents(btn, btn2);
+      let row = new discord.ActionRowBuilder().addComponents(btn, btn2);
 
       client
         .embed(
@@ -74,7 +74,7 @@ module.exports = async (client, interaction, args) => {
         )
         .then(async (m) => {
           const collector = interaction.channel.createMessageComponentCollector(
-            { componentType: Discord.ComponentType.Button }
+            { componentType: discord.ComponentType.Button }
           );
 
           collector.on("collect", (btn) => {
@@ -82,13 +82,13 @@ module.exports = async (client, interaction, args) => {
 
             btn.deferUpdate();
             if (btn.customId === id1) {
-              btn = new Discord.ButtonBuilder()
-                .setStyle(Discord.ButtonStyle.Success)
+              btn = new discord.ButtonBuilder()
+                .setStyle(discord.ButtonStyle.Success)
                 .setLabel(`Yes (${res.percentage["1"]})`)
                 .setCustomId(id1)
                 .setDisabled(true);
-              btn2 = new Discord.ButtonBuilder()
-                .setStyle(Discord.ButtonStyle.Danger)
+              btn2 = new discord.ButtonBuilder()
+                .setStyle(discord.ButtonStyle.Danger)
                 .setLabel(`No (${res.percentage["2"]})`)
                 .setCustomId(id2)
                 .setDisabled(true);
@@ -110,13 +110,13 @@ module.exports = async (client, interaction, args) => {
                 interaction
               );
             } else if (btn.customId === id2) {
-              btn = new Discord.ButtonBuilder()
-                .setStyle(Discord.ButtonStyle.Danger)
+              btn = new discord.ButtonBuilder()
+                .setStyle(discord.ButtonStyle.Danger)
                 .setLabel(`Yes (${res.percentage["1"]})`)
                 .setCustomId(id1)
                 .setDisabled(true);
-              btn2 = new Discord.ButtonBuilder()
-                .setStyle(Discord.ButtonStyle.Success)
+              btn2 = new discord.ButtonBuilder()
+                .setStyle(discord.ButtonStyle.Success)
                 .setLabel(`No (${res.percentage["2"]})`)
                 .setCustomId(id2)
                 .setDisabled(true);

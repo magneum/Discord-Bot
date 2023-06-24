@@ -1,16 +1,16 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = (client, error) => {
   if (error.message == undefined) {
     console.log(error);
     error.message = "Send to console!";
   }
-  const errorlog = new Discord.WebhookClient({
+  const errorlog = new discord.WebhookClient({
     id: client.webhooks.voiceErrorLogs.id,
     token: client.webhooks.voiceErrorLogs.token,
   });
 
-  let embed = new Discord.EmbedBuilder()
+  let embed = new discord.EmbedBuilder()
     .setTitle(`🚨・Voice error`)
     .addFields(
       { name: "Error", value: `\`\`\`${error.message}\`\`\`` },

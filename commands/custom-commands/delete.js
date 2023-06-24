@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const db = require("../../database/models/customCommandAdvanced");
 
 module.exports = async (client, interaction, args) => {

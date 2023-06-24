@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/userBans");
 
-const webhookClientLogs = new Discord.WebhookClient({
+const webhookClientLogs = new discord.WebhookClient({
   id: "",
   token: "",
 });
@@ -45,7 +45,7 @@ module.exports = async (client, interaction, args) => {
           interaction
         );
 
-        let embedLogs = new Discord.EmbedBuilder()
+        let embedLogs = new discord.EmbedBuilder()
           .setTitle(`🔨・Ban added`)
           .setDescription(`<@!${member.id}> (${member.id}) banned from the bot`)
           .addFields({
@@ -74,7 +74,7 @@ module.exports = async (client, interaction, args) => {
             interaction
           );
 
-          let embedLogs = new Discord.EmbedBuilder()
+          let embedLogs = new discord.EmbedBuilder()
             .setTitle(`🔨・Ban removed`)
             .setDescription(
               `<@!${member.id}> (${member.id}) unbanned from the bot`

@@ -1,7 +1,7 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
 const { ChannelType } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -97,8 +97,8 @@ module.exports = {
     await interaction.deferReply({ fetchReply: true });
     const perms = await client.checkPerms(
       {
-        flags: [Discord.PermissionsBitField.Flags.ManageRoles],
-        perms: [Discord.PermissionsBitField.Flags.ManageRoles],
+        flags: [discord.PermissionsBitField.Flags.ManageRoles],
+        perms: [discord.PermissionsBitField.Flags.ManageRoles],
       },
       interaction
     );

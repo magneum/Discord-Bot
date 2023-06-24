@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/economy");
 
@@ -23,18 +23,18 @@ module.exports = async (client, interaction, args) => {
             interaction
           );
 
-        const row = new Discord.ActionRowBuilder().addComponents(
-          new Discord.ButtonBuilder()
+        const row = new discord.ActionRowBuilder().addComponents(
+          new discord.ButtonBuilder()
             .setCustomId("crash_stop")
             .setEmoji("🛑")
-            .setStyle(Discord.ButtonStyle.Danger)
+            .setStyle(discord.ButtonStyle.Danger)
         );
 
-        const disableRow = new Discord.ActionRowBuilder().addComponents(
-          new Discord.ButtonBuilder()
+        const disableRow = new discord.ActionRowBuilder().addComponents(
+          new discord.ButtonBuilder()
             .setCustomId("crash_stop")
             .setEmoji("🛑")
-            .setStyle(Discord.ButtonStyle.Danger)
+            .setStyle(discord.ButtonStyle.Danger)
             .setDisabled(true)
         );
 

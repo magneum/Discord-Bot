@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const welcomeRole = require("../../database/models/joinRole");
 

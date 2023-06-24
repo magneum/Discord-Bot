@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const db = require("../../database/models/music");
 
 module.exports = async (client, interaction, args) => {
-  const webhookClientLogs = new Discord.WebhookClient({
+  const webhookClientLogs = new discord.WebhookClient({
     id: client.webhooks.voiceLogs.id,
     token: client.webhooks.voiceLogs.token,
   });
@@ -41,7 +41,7 @@ module.exports = async (client, interaction, args) => {
     interaction
   );
 
-  let embed = new Discord.EmbedBuilder()
+  let embed = new discord.EmbedBuilder()
     .setTitle(`📻・Radio stopped`)
     .setDescription(`_______________ \n\nRadio has stopped successfully`)
     .addFields(

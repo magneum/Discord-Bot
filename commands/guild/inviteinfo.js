@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const axios = require("axios");
 
 const model = require("../../database/models/badge");
@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
   const verifyFlags = {
     0: `Unrestricted`,
     1: `Must have verified email on account`,
-    2: `Must be registered on Discord for longer than 5 minutes`,
+    2: `Must be registered on discord for longer than 5 minutes`,
     3: `Must be a member of the server for longer than 10 minutes`,
     4: `Must have a verified phone number`,
   };

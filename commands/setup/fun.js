@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Birthdays = require("../../database/models/birthdaychannels");
 const Chatbot = require("../../database/models/chatbot_channel");

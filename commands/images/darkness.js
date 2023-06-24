@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const { Canvas } = require("canvacord");
 
 module.exports = async (client, interaction, args) => {
@@ -13,7 +13,7 @@ module.exports = async (client, interaction, args) => {
   const amount = 60;
 
   const image = await Canvas.darkness(userAvatar, amount);
-  let attach = new Discord.AttachmentBuilder(image, { name: "darkness.gif" });
+  let attach = new discord.AttachmentBuilder(image, { name: "darkness.gif" });
 
   const embed = client.templateEmbed().setImage("attachment://darkness.gif");
   interaction.editReply({ files: [attach], embeds: [embed] });

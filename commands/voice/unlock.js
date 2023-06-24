@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkBotPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.ManageChannels],
-      perms: [Discord.PermissionsBitField.Flags.ManageChannels],
+      flags: [discord.PermissionsBitField.Flags.ManageChannels],
+      perms: [discord.PermissionsBitField.Flags.ManageChannels],
     },
     interaction
   );

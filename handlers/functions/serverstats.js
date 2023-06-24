@@ -1,5 +1,5 @@
 const Schema = require("../../database/models/stats");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client) => {
   client.getTemplate = async (guild) => {
@@ -16,23 +16,23 @@ module.exports = async (client) => {
     }
   };
 
-  client.on(Discord.Events.GuildMemberAdd, async (member) => {
+  client.on(discord.Events.GuildMemberAdd, async (member) => {
     client.emit("updateMembers", member.guild);
     client.emit("updateBots", member.guild);
   });
-  client.on(Discord.Events.GuildMemberRemove, async (member) => {
+  client.on(discord.Events.GuildMemberRemove, async (member) => {
     client.emit("updateMembers", member.guild);
     client.emit("updateBots", member.guild);
   });
 
-  client.on(Discord.Events.ChannelCreate, async (channel) => {
+  client.on(discord.Events.ChannelCreate, async (channel) => {
     client.emit("updateChannels", channel, channel.guild);
     client.emit("updateNewsChannels", channel, channel.guild);
     client.emit("updateStageChannels", channel, channel.guild);
     client.emit("updateTextChannels", channel, channel.guild);
     client.emit("updateVoiceChannels", channel, channel.guild);
   });
-  client.on(Discord.Events.ChannelDelete, async (channel) => {
+  client.on(discord.Events.ChannelDelete, async (channel) => {
     client.emit("updateChannels", channel, channel.guild);
     client.emit("updateNewsChannels", channel, channel.guild);
     client.emit("updateStageChannels", channel, channel.guild);
@@ -40,39 +40,39 @@ module.exports = async (client) => {
     client.emit("updateVoiceChannels", channel, channel.guild);
   });
 
-  client.on(Discord.Events.RoleCreate, async (role) =>
+  client.on(discord.Events.RoleCreate, async (role) =>
     client.emit("updateRoles", role.guild)
   );
-  client.on(Discord.Events.RoleDelete, async (role) =>
+  client.on(discord.Events.RoleDelete, async (role) =>
     client.emit("updateRoles", role.guild)
   );
 
-  client.on(Discord.Events.GuildMemberBoost, (booster) =>
+  client.on(discord.Events.GuildMemberBoost, (booster) =>
     client.emit("updateBoosts", booster.guild)
   );
-  client.on(Discord.Events.GuildMemberUnboost, (booster) =>
+  client.on(discord.Events.GuildMemberUnboost, (booster) =>
     client.emit("updateBoosts", booster.guild)
   );
 
-  client.on(Discord.Events.GuildBoostLevelUp, (tier) =>
+  client.on(discord.Events.GuildBoostLevelUp, (tier) =>
     client.emit("updateTier", tier.guild)
   );
-  client.on(Discord.Events.GuildBoostLevelDown, (tier) =>
+  client.on(discord.Events.GuildBoostLevelDown, (tier) =>
     client.emit("updateTier", tier.guild)
   );
 
-  client.on(Discord.Events.EmojiCreate, (emoji) => {
+  client.on(discord.Events.EmojiCreate, (emoji) => {
     client.emit("updateEmojis", emoji, emoji.guild);
     client.emit("updateAEmojis", emoji, emoji.guild);
     client.emit("updateSEmojis", emoji, emoji.guild);
   });
-  client.on(Discord.Events.EmojiDelete, (emoji) => {
+  client.on(discord.Events.EmojiDelete, (emoji) => {
     client.emit("updateEmojis", emoji, emoji.guild);
     client.emit("updateAEmojis", emoji, emoji.guild);
     client.emit("updateSEmojis", emoji, emoji.guild);
   });
 
-  client.on(Discord.Events.ClientReady, async (client) =>
+  client.on(discord.Events.ClientReady, async (client) =>
     client.emit("updateClock")
   );
 };

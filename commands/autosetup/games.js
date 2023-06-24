@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Counting = require("../../database/models/countChannel");
 const GTN = require("../../database/models/guessNumber");
 const GTW = require("../../database/models/guessWord");
@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "counting",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.embed(
@@ -30,7 +30,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "guess-the-number",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.embed(
@@ -49,7 +49,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "guess-the-word",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         var word = "start";
@@ -82,7 +82,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "word-snake",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(WordSnake, ch, interaction);

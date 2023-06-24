@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const welcomeChannel = require("../../database/models/welcomeChannels");
 const welcomeRole = require("../../database/models/joinRole");
 const leaveChannel = require("../../database/models/leaveChannels");
@@ -10,7 +10,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "Welcome",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(welcomeChannel, ch, interaction);
@@ -32,7 +32,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "Bye",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(leaveChannel, ch, interaction);

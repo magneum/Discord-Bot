@@ -1,11 +1,11 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/wordsnake");
 
 module.exports = async (client) => {
   client
-    .on(Discord.Events.MessageCreate, async (message) => {
-      if (message.author.bot || message.channel.type === Discord.ChannelType.DM)
+    .on(discord.Events.MessageCreate, async (message) => {
+      if (message.author.bot || message.channel.type === discord.ChannelType.DM)
         return;
 
       Schema.findOne(

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const ticketSchema = require("../../database/models/tickets");
 
@@ -13,13 +13,13 @@ module.exports = async (client, interaction, args) => {
         const channel = interaction.guild.channels.cache.get(
           ticketData.Channel
         );
-        const button = new Discord.ButtonBuilder()
+        const button = new discord.ButtonBuilder()
           .setCustomId("Bot_openticket")
           .setLabel(name)
-          .setStyle(Discord.ButtonStyle.Primary)
+          .setStyle(discord.ButtonStyle.Primary)
           .setEmoji("🎫");
 
-        const row = new Discord.ActionRowBuilder().addComponents(button);
+        const row = new discord.ActionRowBuilder().addComponents(button);
 
         client.embed(
           {

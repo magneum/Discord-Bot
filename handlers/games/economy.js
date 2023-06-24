@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/economy");
 const itemSchema = require("../../database/models/economyItems");

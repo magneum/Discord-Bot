@@ -35,8 +35,8 @@ module.exports = {
 
     const flags = {
       ActiveDeveloper: "👨‍💻・Active Developer",
-      BugHunterLevel1: "🐛・Discord Bug Hunter",
-      BugHunterLevel2: "🐛・Discord Bug Hunter",
+      BugHunterLevel1: "🐛・discord Bug Hunter",
+      BugHunterLevel2: "🐛・discord Bug Hunter",
       CertifiedModerator: "👮‍♂️・Certified Moderator",
       HypeSquadOnlineHouse1: "🏠・House Bravery Member",
       HypeSquadOnlineHouse2: "🏠・House Brilliance Member",
@@ -46,8 +46,8 @@ module.exports = {
       Partner: "👑・Partner",
       Quarantined: "🔒・Quarantined", // Not sure if this is still a thing
       Spammer: "🔒・Spammer", // Not sure if this one works
-      Staff: "👨‍💼・Discord Staff",
-      TeamPseudoUser: "👨‍💼・Discord Team",
+      Staff: "👨‍💼・discord Staff",
+      TeamPseudoUser: "👨‍💼・discord Team",
       VerifiedBot: "🤖・Verified Bot",
       VerifiedDeveloper: "👨‍💻・(early)Verified Bot Developer",
     };
@@ -137,7 +137,7 @@ module.exports = {
             inline: true,
           },
           {
-            name: "Discord joined at",
+            name: "discord joined at",
             value: `<t:${Math.round(member.user.createdTimestamp / 1000)}>`,
             inline: true,
           },

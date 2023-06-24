@@ -1,5 +1,5 @@
 const { ContextMenuCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Schema = require("../../database/models/warnings");
 const Case = require("../../database/models/warnCase");
 
@@ -8,8 +8,8 @@ module.exports = {
   run: async (client, interaction, args) => {
     const perms = await client.checkPerms(
       {
-        flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-        perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+        flags: [discord.PermissionsBitField.Flags.ManageMessages],
+        perms: [discord.PermissionsBitField.Flags.ManageMessages],
       },
       interaction
     );
@@ -26,17 +26,17 @@ module.exports = {
     }
 
     // Create modal to give a reason
-    const modal = new Discord.ModalBuilder()
+    const modal = new discord.ModalBuilder()
       .setTitle("Warn")
       .setCustomId("warn")
       .addComponents(
-        new Discord.ActionRowBuilder().addComponents(
-          new Discord.TextInputBuilder()
+        new discord.ActionRowBuilder().addComponents(
+          new discord.TextInputBuilder()
             .setCustomId("reason")
             .setPlaceholder("Reason")
             .setLabel("Reason")
             .setMinLength(1)
-            .setStyle(Discord.TextInputStyle.Short)
+            .setStyle(discord.TextInputStyle.Short)
             .setMaxLength(100)
         )
       );

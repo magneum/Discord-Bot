@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Birthdays = require("../../database/models/birthdaychannels");
 const Chatbot = require("../../database/models/chatbot_channel");
 const Review = require("../../database/models/reviewChannels");
@@ -12,7 +12,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "birthdays",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(Birthdays, ch, interaction);
@@ -23,7 +23,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "chatbot",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(Chatbot, ch, interaction);
@@ -34,7 +34,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "reviews",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(Review, ch, interaction);
@@ -45,7 +45,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "suggestions",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(Suggestion, ch, interaction);
@@ -56,7 +56,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "starboard",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(StarBoard, ch, interaction);

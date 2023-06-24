@@ -1,5 +1,5 @@
 const { GiveawaysManager } = require("discord-giveaways");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const fs = require("fs");
 
 const giveawayModel = require("../../database/models/giveaways");

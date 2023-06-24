@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
 
@@ -136,8 +136,8 @@ module.exports = async (client, interaction, args) => {
             inline: true,
           },
           {
-            name: "📂┆Discord.js Version",
-            value: `\`${Discord.version}\``,
+            name: "📂┆discord.js Version",
+            value: `\`${discord.version}\``,
             inline: true,
           },
           {

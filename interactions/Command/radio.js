@@ -1,6 +1,6 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/music");
 
@@ -34,12 +34,12 @@ module.exports = {
     client.checkBotPerms(
       {
         flags: [
-          Discord.PermissionsBitField.Flags.Connect,
-          Discord.PermissionsBitField.Flags.Speak,
+          discord.PermissionsBitField.Flags.Connect,
+          discord.PermissionsBitField.Flags.Speak,
         ],
         perms: [
-          Discord.PermissionsBitField.Flags.Connect,
-          Discord.PermissionsBitField.Flags.Speak,
+          discord.PermissionsBitField.Flags.Connect,
+          discord.PermissionsBitField.Flags.Speak,
         ],
       },
       interaction

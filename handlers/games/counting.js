@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const countSchema = require("../../database/models/countChannel");
 const count = require("../../database/models/count");
@@ -6,13 +6,13 @@ const count = require("../../database/models/count");
 module.exports = async (client) => {
   client
     .on("messageCreate", async (message) => {
-      if (message.author.bot || message.channel.type === Discord.ChannelType.DM)
+      if (message.author.bot || message.channel.type === discord.ChannelType.DM)
         return;
 
       if (
         isNaN(message.content) ||
         message.attachments.size > 0 ||
-        message.type == Discord.MessageType.ChannelPinnedMessage
+        message.type == discord.MessageType.ChannelPinnedMessage
       )
         return;
 

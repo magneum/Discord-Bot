@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Schema = require("../../database/models/warnings");
 const { ContextMenuCommandBuilder } = require("discord.js");
 
@@ -7,8 +7,8 @@ module.exports = {
   run: async (client, interaction, args) => {
     const perms = await client.checkPerms(
       {
-        flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-        perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+        flags: [discord.PermissionsBitField.Flags.ManageMessages],
+        perms: [discord.PermissionsBitField.Flags.ManageMessages],
       },
       interaction
     );
@@ -34,7 +34,7 @@ module.exports = {
       { Guild: interaction.guild.id, User: member.id },
       async (err, data) => {
         if (data) {
-          const menu = new Discord.StringSelectMenuBuilder()
+          const menu = new discord.StringSelectMenuBuilder()
             .setCustomId("unwarn")
             .setPlaceholder("Select a warning to remove");
 
@@ -52,7 +52,7 @@ module.exports = {
             {
               title: `🔨・Unwarn`,
               desc: `Select a warning to remove from **${member.user.tag}**`,
-              components: [new Discord.ActionRowBuilder().addComponents(menu)],
+              components: [new discord.ActionRowBuilder().addComponents(menu)],
               type: "ephemeraledit",
             },
             interaction

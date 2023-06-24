@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const player = client.player.players.get(interaction.guild.id);
@@ -33,26 +33,26 @@ module.exports = async (client, interaction, args) => {
 
   const track = player.queue.previous;
 
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setEmoji("⏮️")
       .setCustomId("Bot-musicprev")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏸️")
       .setCustomId("Bot-musicpause")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏹️")
       .setCustomId("Bot-musicstop")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏭️")
       .setCustomId("Bot-musicnext")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
   );
 
   client.embed(

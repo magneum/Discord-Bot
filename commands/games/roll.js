@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   var result = Math.ceil(Math.random() * 6);

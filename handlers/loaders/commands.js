@@ -1,11 +1,11 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const { REST } = require("discord.js");
 const { Routes } = require("discord.js");
 const chalk = require("chalk");
 const fs = require("fs");
 
 module.exports = (client) => {
-  const interactionLogs = new Discord.WebhookClient({
+  const interactionLogs = new discord.WebhookClient({
     id: client.webhooks.interactionLogs.id,
     token: client.webhooks.interactionLogs.token,
   });
@@ -47,7 +47,7 @@ module.exports = (client) => {
 
   (async () => {
     try {
-      const embed = new Discord.EmbedBuilder()
+      const embed = new discord.EmbedBuilder()
         .setDescription(`Started refreshing application (/) commands.`)
         .setColor(client.config.colors.normal);
       interactionLogs.send({
@@ -59,7 +59,7 @@ module.exports = (client) => {
         body: commands,
       });
 
-      const embedFinal = new Discord.EmbedBuilder()
+      const embedFinal = new discord.EmbedBuilder()
         .setDescription(
           `Successfully reloaded ${commands.length} application (/) commands.`
         )

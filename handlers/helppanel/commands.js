@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client) => {
   const fields = [
@@ -190,7 +190,7 @@ module.exports = async (client) => {
   ];
 
   client
-    .on(Discord.Events.InteractionCreate, async (interaction) => {
+    .on(discord.Events.InteractionCreate, async (interaction) => {
       if (!interaction.isStringSelectMenu()) return;
 
       if (interaction.customId == "Bot-helppanel") {
@@ -198,30 +198,30 @@ module.exports = async (client) => {
           interaction.deferUpdate();
           let page = 1;
 
-          const row = new Discord.ActionRowBuilder().addComponents(
-            new Discord.ButtonBuilder()
+          const row = new discord.ActionRowBuilder().addComponents(
+            new discord.ButtonBuilder()
               .setCustomId("helpPrev")
               .setEmoji("⬅️")
-              .setStyle(Discord.ButtonStyle.Secondary),
+              .setStyle(discord.ButtonStyle.Secondary),
 
-            new Discord.ButtonBuilder()
+            new discord.ButtonBuilder()
               .setCustomId("helpNext")
               .setEmoji("➡️")
-              .setStyle(Discord.ButtonStyle.Secondary),
+              .setStyle(discord.ButtonStyle.Secondary),
 
-            new Discord.ButtonBuilder()
+            new discord.ButtonBuilder()
               .setLabel("Invite")
               .setURL(client.config.discord.botInvite)
-              .setStyle(Discord.ButtonStyle.Link),
+              .setStyle(discord.ButtonStyle.Link),
 
-            new Discord.ButtonBuilder()
+            new discord.ButtonBuilder()
               .setLabel("Support server")
               .setURL(client.config.discord.serverInvite)
-              .setStyle(Discord.ButtonStyle.Link)
+              .setStyle(discord.ButtonStyle.Link)
           );
 
-          const row2 = new Discord.ActionRowBuilder().addComponents(
-            new Discord.StringSelectMenuBuilder()
+          const row2 = new discord.ActionRowBuilder().addComponents(
+            new discord.StringSelectMenuBuilder()
               .setCustomId("Bot-helppanel")
               .setPlaceholder("❌┆Nothing selected")
               .addOptions([

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Counting = require("../../database/models/countChannel");
 const GTN = require("../../database/models/guessNumber");

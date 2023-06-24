@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const generator = require("generate-password");
 
 module.exports = async (client, err, command, interaction) => {
@@ -8,12 +8,12 @@ module.exports = async (client, err, command, interaction) => {
     numbers: true,
   });
 
-  const errorlog = new Discord.WebhookClient({
+  const errorlog = new discord.WebhookClient({
     id: client.webhooks.errorLogs.id,
     token: client.webhooks.errorLogs.token,
   });
 
-  let embed = new Discord.MessageEmbed()
+  let embed = new discord.MessageEmbed()
     .setTitle(`🚨・${password}`)
     .addFields(
       {
@@ -38,8 +38,8 @@ module.exports = async (client, err, command, interaction) => {
     console.log(error);
   }
 
-  let row = new Discord.MessageActionRow().addComponents(
-    new Discord.MessageButton()
+  let row = new discord.MessageActionRow().addComponents(
+    new discord.MessageButton()
       .setLabel("Support server")
       .setURL(client.config.discord.serverInvite)
       .setStyle("LINK")

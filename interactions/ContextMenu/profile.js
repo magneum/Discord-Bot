@@ -27,8 +27,8 @@ module.exports = {
 
     const flags = {
       ActiveDeveloper: "👨‍💻・Active Developer",
-      BugHunterLevel1: "🐛・Discord Bug Hunter",
-      BugHunterLevel2: "🐛・Discord Bug Hunter",
+      BugHunterLevel1: "🐛・discord Bug Hunter",
+      BugHunterLevel2: "🐛・discord Bug Hunter",
       CertifiedModerator: "👮‍♂️・Certified Moderator",
       HypeSquadOnlineHouse1: "🏠・House Bravery Member",
       HypeSquadOnlineHouse2: "🏠・House Brilliance Member",
@@ -38,8 +38,8 @@ module.exports = {
       Partner: "👑・Partner",
       Quarantined: "🔒・Quarantined",
       Spammer: "🔒・Spammer",
-      Staff: "👨‍💼・Discord Staff",
-      TeamPseudoUser: "👨‍💼・Discord Team",
+      Staff: "👨‍💼・discord Staff",
+      TeamPseudoUser: "👨‍💼・discord Team",
       VerifiedBot: "🤖・Verified Bot",
       VerifiedDeveloper: "👨‍💻・(early)Verified Bot Developer",
     };
@@ -137,7 +137,7 @@ module.exports = {
             inline: true,
           },
           {
-            name: "🏷️┆Discord Badges",
+            name: "🏷️┆discord Badges",
             value: userFlags.length
               ? userFlags.map((flag) => flags[flag]).join(", ")
               : "None",

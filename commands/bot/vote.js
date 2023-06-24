@@ -1,15 +1,15 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Topgg = require(`@top-gg/sdk`);
 require("moment-duration-format");
 
 module.exports = async (client, interaction, args) => {
   let dbl = new Topgg.Api(process.env.TOPGG_TOKEN);
 
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setLabel("Vote for me")
       .setURL("https://top.gg/bot/798144456528363550/vote")
-      .setStyle(Discord.ButtonStyle.Link)
+      .setStyle(discord.ButtonStyle.Link)
   );
 
   dbl

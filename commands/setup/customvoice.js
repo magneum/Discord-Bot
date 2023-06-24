@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const voiceSchema = require("../../database/models/voice");
 
@@ -9,11 +9,11 @@ module.exports = async (client, interaction, args) => {
   interaction.guild.channels
     .create({
       name: ChannelName,
-      type: Discord.ChannelType.GuildVoice,
+      type: discord.ChannelType.GuildVoice,
       parent: category.id,
       permissionOverwrites: [
         {
-          deny: [Discord.PermissionsBitField.Flags.Speak],
+          deny: [discord.PermissionsBitField.Flags.Speak],
           id: interaction.guild.id,
         },
       ],

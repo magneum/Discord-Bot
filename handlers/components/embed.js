@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 /**
  * Easy to send errors because im lazy to do the same things :p
@@ -10,7 +10,7 @@ const Schema = require("../../database/models/functions");
 
 module.exports = (client) => {
   client.templateEmbed = function () {
-    return new Discord.EmbedBuilder()
+    return new discord.EmbedBuilder()
       .setAuthor({
         name: client.user.username,
         iconURL: client.user.avatarURL({ size: 1024 }),
@@ -278,7 +278,7 @@ module.exports = (client) => {
   ) {
     const functiondata = await Schema.findOne({ Guild: interaction.guild.id });
 
-    let embed = new Discord.EmbedBuilder().setColor(
+    let embed = new discord.EmbedBuilder().setColor(
       client.config.colors.normal
     );
 

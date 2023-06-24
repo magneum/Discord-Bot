@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const db = require("../../database/models/customCommandAdvanced");
 
 module.exports = async (client, interaction, args) => {
@@ -18,8 +18,8 @@ module.exports = async (client, interaction, args) => {
           interaction
         );
       } else {
-        const row = new Discord.ActionRowBuilder().addComponents(
-          new Discord.StringSelectMenuBuilder()
+        const row = new discord.ActionRowBuilder().addComponents(
+          new discord.StringSelectMenuBuilder()
             .setCustomId("customSelect")
             .setPlaceholder("❌┆Nothing selected")
             .addOptions([

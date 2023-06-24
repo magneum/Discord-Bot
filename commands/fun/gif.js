@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const discord = require('discord.js');
 
 module.exports = async (client, interaction, args) => {
     const msg = interaction.options.getString('text');

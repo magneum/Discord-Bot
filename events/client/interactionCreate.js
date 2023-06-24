@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Captcha = require("@haileybot/captcha-generator");
 
 const reactionSchema = require("../../database/models/reactionRoles");
@@ -111,7 +111,7 @@ module.exports = async (client, interaction) => {
       let captcha = new Captcha();
 
       try {
-        var image = new Discord.AttachmentBuilder(captcha.JPEGStream, {
+        var image = new discord.AttachmentBuilder(captcha.JPEGStream, {
           name: "captcha.jpeg",
         });
 

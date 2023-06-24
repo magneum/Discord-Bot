@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Functions = require("../../database/models/functions");
 const afk = require("../../database/models/afk");
@@ -15,20 +15,20 @@ const fetch = require("node-fetch");
 
 /**
  *
- * @param {Discord.Client} client
- * @param {Discord.Message} message
+ * @param {discord.Client} client
+ * @param {discord.Message} message
  * @returns
  */
 module.exports = async (client, message) => {
-  const dmlog = new Discord.WebhookClient({
+  const dmlog = new discord.WebhookClient({
     id: client.webhooks.dmLogs.id,
     token: client.webhooks.dmLogs.token,
   });
 
   if (message.author.bot) return;
 
-  if (message.channel.type === Discord.ChannelType.DM) {
-    let embedLogs = new Discord.EmbedBuilder()
+  if (message.channel.type === discord.ChannelType.DM) {
+    let embedLogs = new discord.EmbedBuilder()
       .setTitle(`💬・New DM message!`)
       .setDescription(`Bot has received a new DM message!`)
       .addFields(
@@ -345,7 +345,7 @@ module.exports = async (client, message) => {
   }
 
   if (!guildSettings || !guildSettings.Prefix) {
-    var prefix = client.config.Discord.prefix;
+    var prefix = client.config.discord.prefix;
   } else {
     var prefix = guildSettings.Prefix;
   }
@@ -366,23 +366,23 @@ module.exports = async (client, message) => {
     message.mentions.users.first().id == client.user.id &&
     command.length === 0
   ) {
-    let row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
+    let row = new discord.ActionRowBuilder().addComponents(
+      new discord.ButtonBuilder()
         .setLabel("Invite")
         .setURL(client.config.discord.botInvite)
-        .setStyle(Discord.ButtonStyle.Link),
+        .setStyle(discord.ButtonStyle.Link),
 
-      new Discord.ButtonBuilder()
+      new discord.ButtonBuilder()
         .setLabel("Support server")
         .setURL(client.config.discord.serverInvite)
-        .setStyle(Discord.ButtonStyle.Link)
+        .setStyle(discord.ButtonStyle.Link)
     );
 
     client
       .embed(
         {
           title: "Hi, i'm Bot",
-          desc: `Use with commands via Discord ${client.emotes.normal.slash} commands`,
+          desc: `Use with commands via discord ${client.emotes.normal.slash} commands`,
           fields: [
             {
               name: "📨┆Invite me",

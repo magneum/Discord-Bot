@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const fs = require("fs");
 
 const { Manager } = require("erela.js");
@@ -7,8 +7,8 @@ const Facebook = require("erela.js-facebook");
 const Deezer = require("erela.js-deezer");
 const AppleMusic = require("erela.js-apple");
 
-// Discord client
-const client = new Discord.Client({
+// discord client
+const client = new discord.Client({
   allowedMentions: {
     parse: ["users", "roles"],
     repliedUser: true,
@@ -16,30 +16,30 @@ const client = new Discord.Client({
   autoReconnect: true,
   disabledEvents: ["TYPING_START"],
   partials: [
-    Discord.Partials.Channel,
-    Discord.Partials.GuildMember,
-    Discord.Partials.Message,
-    Discord.Partials.Reaction,
-    Discord.Partials.User,
-    Discord.Partials.GuildScheduledEvent,
+    discord.Partials.Channel,
+    discord.Partials.GuildMember,
+    discord.Partials.Message,
+    discord.Partials.Reaction,
+    discord.Partials.User,
+    discord.Partials.GuildScheduledEvent,
   ],
   intents: [
-    Discord.GatewayIntentBits.Guilds,
-    Discord.GatewayIntentBits.GuildMembers,
-    Discord.GatewayIntentBits.GuildBans,
-    Discord.GatewayIntentBits.GuildEmojisAndStickers,
-    Discord.GatewayIntentBits.GuildIntegrations,
-    Discord.GatewayIntentBits.GuildWebhooks,
-    Discord.GatewayIntentBits.GuildInvites,
-    Discord.GatewayIntentBits.GuildVoiceStates,
-    Discord.GatewayIntentBits.GuildMessages,
-    Discord.GatewayIntentBits.GuildMessageReactions,
-    Discord.GatewayIntentBits.GuildMessageTyping,
-    Discord.GatewayIntentBits.DirectMessages,
-    Discord.GatewayIntentBits.DirectMessageReactions,
-    Discord.GatewayIntentBits.DirectMessageTyping,
-    Discord.GatewayIntentBits.GuildScheduledEvents,
-    Discord.GatewayIntentBits.MessageContent,
+    discord.GatewayIntentBits.Guilds,
+    discord.GatewayIntentBits.GuildMembers,
+    discord.GatewayIntentBits.GuildBans,
+    discord.GatewayIntentBits.GuildEmojisAndStickers,
+    discord.GatewayIntentBits.GuildIntegrations,
+    discord.GatewayIntentBits.GuildWebhooks,
+    discord.GatewayIntentBits.GuildInvites,
+    discord.GatewayIntentBits.GuildVoiceStates,
+    discord.GatewayIntentBits.GuildMessages,
+    discord.GatewayIntentBits.GuildMessageReactions,
+    discord.GatewayIntentBits.GuildMessageTyping,
+    discord.GatewayIntentBits.DirectMessages,
+    discord.GatewayIntentBits.DirectMessageReactions,
+    discord.GatewayIntentBits.DirectMessageTyping,
+    discord.GatewayIntentBits.GuildScheduledEvents,
+    discord.GatewayIntentBits.MessageContent,
   ],
   restTimeOffset: 0,
 });
@@ -135,18 +135,18 @@ if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
   }
 }
 
-client.commands = new Discord.Collection();
+client.commands = new discord.Collection();
 client.playerManager = new Map();
 client.triviaManager = new Map();
 client.queue = new Map();
 
 // Webhooks
-const consoleLogs = new Discord.WebhookClient({
+const consoleLogs = new discord.WebhookClient({
   id: client.webhooks.consoleLogs.id,
   token: client.webhooks.consoleLogs.token,
 });
 
-const warnLogs = new Discord.WebhookClient({
+const warnLogs = new discord.WebhookClient({
   id: client.webhooks.warnLogs.id,
   token: client.webhooks.warnLogs.token,
 });
@@ -169,16 +169,16 @@ process.on("unhandledRejection", (error) => {
     if (error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
-  const embed = new Discord.EmbedBuilder()
+  const embed = new discord.EmbedBuilder()
     .setTitle(`🚨・Unhandled promise rejection`)
     .addFields([
       {
         name: "Error",
-        value: error ? Discord.codeBlock(error) : "No error",
+        value: error ? discord.codeBlock(error) : "No error",
       },
       {
         name: "Stack error",
-        value: error.stack ? Discord.codeBlock(error.stack) : "No stack error",
+        value: error.stack ? discord.codeBlock(error.stack) : "No stack error",
       },
     ])
     .setColor(client.config.colors.normal);
@@ -195,7 +195,7 @@ process.on("unhandledRejection", (error) => {
 
 process.on("warning", (warn) => {
   console.warn("Warning:", warn);
-  const embed = new Discord.EmbedBuilder()
+  const embed = new discord.EmbedBuilder()
     .setTitle(`🚨・New warning found`)
     .addFields([
       {
@@ -215,7 +215,7 @@ process.on("warning", (warn) => {
     });
 });
 
-client.on(Discord.ShardEvents.Error, (error) => {
+client.on(discord.ShardEvents.Error, (error) => {
   console.log(error);
   if (error)
     if (error.length > 950)
@@ -224,7 +224,7 @@ client.on(Discord.ShardEvents.Error, (error) => {
     if (error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
-  const embed = new Discord.EmbedBuilder()
+  const embed = new discord.EmbedBuilder()
     .setTitle(`🚨・A websocket connection encountered an error`)
     .addFields([
       {

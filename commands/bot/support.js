@@ -1,11 +1,11 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setLabel("Support server")
       .setURL(client.config.discord.serverInvite)
-      .setStyle(Discord.ButtonStyle.Link)
+      .setStyle(discord.ButtonStyle.Link)
   );
 
   client.embed(

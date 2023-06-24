@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const logs = require("../../database/models/logChannels");
 const boostLogs = require("../../database/models/boostChannels");
 const levelLogs = require("../../database/models/levelChannels");
@@ -12,11 +12,11 @@ module.exports = async (client, interaction, args) => {
         name: "server-logs",
         permissionOverwrites: [
           {
-            deny: [Discord.PermissionsBitField.Flags.ViewChannel],
+            deny: [discord.PermissionsBitField.Flags.ViewChannel],
             id: interaction.guild.id,
           },
         ],
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(logs, ch, interaction);
@@ -27,7 +27,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "level-logs",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(levelLogs, ch, interaction);
@@ -38,7 +38,7 @@ module.exports = async (client, interaction, args) => {
     interaction.guild.channels
       .create({
         name: "boosts",
-        type: Discord.ChannelType.GuildText,
+        type: discord.ChannelType.GuildText,
       })
       .then((ch) => {
         client.createChannelSetup(boostLogs, ch, interaction);

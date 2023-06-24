@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/economy");
 const Schema2 = require("../../database/models/economyTimeout");
@@ -7,22 +7,22 @@ const store = require("../../database/models/economyStore");
 module.exports = async (client, interaction, args) => {
   client.checkPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.Administrator],
-      perms: [Discord.PermissionsBitField.Flags.Administrator],
+      flags: [discord.PermissionsBitField.Flags.Administrator],
+      perms: [discord.PermissionsBitField.Flags.Administrator],
     },
     interaction
   );
 
-  const row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  const row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setCustomId("eco_go")
       .setEmoji("✅")
-      .setStyle(Discord.ButtonStyle.Success),
+      .setStyle(discord.ButtonStyle.Success),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setCustomId("eco_stop")
       .setEmoji("❌")
-      .setStyle(Discord.ButtonStyle.Danger)
+      .setStyle(discord.ButtonStyle.Danger)
   );
 
   client.embed(
@@ -40,7 +40,7 @@ module.exports = async (client, interaction, args) => {
   interaction.channel
     .awaitMessageComponent({
       filter,
-      componentType: Discord.ComponentType.Button,
+      componentType: discord.ComponentType.Button,
       time: 60000,
     })
     .then(async (i) => {

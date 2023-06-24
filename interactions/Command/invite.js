@@ -1,6 +1,6 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,16 +15,16 @@ module.exports = {
 
   run: async (client, interaction, args) => {
     await interaction.deferReply({ fetchReply: true });
-    let row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
+    let row = new discord.ActionRowBuilder().addComponents(
+      new discord.ButtonBuilder()
         .setLabel("Invite")
         .setURL(client.config.discord.botInvite)
-        .setStyle(Discord.ButtonStyle.Link),
+        .setStyle(discord.ButtonStyle.Link),
 
-      new Discord.ButtonBuilder()
+      new discord.ButtonBuilder()
         .setLabel("Support server")
         .setURL(client.config.discord.serverInvite)
-        .setStyle(Discord.ButtonStyle.Link)
+        .setStyle(discord.ButtonStyle.Link)
     );
 
     client.embed(

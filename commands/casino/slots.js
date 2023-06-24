@@ -1,5 +1,5 @@
 const slotItems = ["🍇", "🍉", "🍊", "🍎", "🍓", "🍒"];
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const db = require("../../database/models/economy");
 
 module.exports = async (client, interaction, args) => {
@@ -40,21 +40,21 @@ module.exports = async (client, interaction, args) => {
           win = true;
         }
 
-        const row = new Discord.ActionRowBuilder().addComponents(
-          new Discord.ButtonBuilder()
+        const row = new discord.ActionRowBuilder().addComponents(
+          new discord.ButtonBuilder()
             .setCustomId("slots_1")
             .setLabel(`${slotItems[number[0]]}`)
-            .setStyle(Discord.ButtonStyle.Primary),
+            .setStyle(discord.ButtonStyle.Primary),
 
-          new Discord.ButtonBuilder()
+          new discord.ButtonBuilder()
             .setCustomId("slots_2")
             .setLabel(`${slotItems[number[1]]}`)
-            .setStyle(Discord.ButtonStyle.Primary),
+            .setStyle(discord.ButtonStyle.Primary),
 
-          new Discord.ButtonBuilder()
+          new discord.ButtonBuilder()
             .setCustomId("slots_3")
             .setLabel(`${slotItems[number[2]]}`)
-            .setStyle(Discord.ButtonStyle.Primary)
+            .setStyle(discord.ButtonStyle.Primary)
         );
         if (win) {
           client.embed(

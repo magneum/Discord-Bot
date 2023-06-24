@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/economy");
 const store = require("../../database/models/economyStore");
@@ -50,7 +50,7 @@ module.exports = async (client, interaction, args) => {
   interaction.channel
     .awaitMessageComponent({
       filter,
-      componentType: Discord.ComponentType.StringSelect,
+      componentType: discord.ComponentType.StringSelect,
       time: 60000,
     })
     .then(async (i) => {

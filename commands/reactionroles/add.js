@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/reactionRoles");
 
@@ -7,7 +7,7 @@ module.exports = async (client, interaction, args) => {
   const role = interaction.options.getRole("role");
   const emoji = interaction.options.getString("emoji");
 
-  const parsedEmoji = Discord.parseEmoji(emoji);
+  const parsedEmoji = discord.parseEmoji(emoji);
   if (!parsedEmoji)
     return client.errNormal(
       {

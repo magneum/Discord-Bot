@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const { Canvas } = require("canvacord");
 module.exports = async (client, interaction, args) => {
   const member = interaction.options.getUser("user");
@@ -10,7 +10,7 @@ module.exports = async (client, interaction, args) => {
   });
 
   const image = await Canvas.greyscale(userAvatar);
-  let attach = new Discord.AttachmentBuilder(image, { name: "greyscale.png" });
+  let attach = new discord.AttachmentBuilder(image, { name: "greyscale.png" });
 
   const embed = client.templateEmbed();
   embed.setImage("attachment://greyscale.png");

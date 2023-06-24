@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const logs = require("../../database/models/logChannels");
 const boostLogs = require("../../database/models/boostChannels");

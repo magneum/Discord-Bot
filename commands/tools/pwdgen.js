@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const generator = require("generate-password");
 
 module.exports = async (client, interaction, args) => {

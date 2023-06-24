@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const DIG = require("discord-image-generation");
 
 module.exports = async (client, interaction, args) => {
@@ -30,7 +30,7 @@ module.exports = async (client, interaction, args) => {
     user2.tag,
     user3.tag
   );
-  var attach = new Discord.AttachmentBuilder(img, { name: "podium.png" });
+  var attach = new discord.AttachmentBuilder(img, { name: "podium.png" });
   const embed = client.templateEmbed().setImage("attachment://podium.png");
   interaction.editReply({ files: [attach], embeds: [embed] });
 };

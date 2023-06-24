@@ -1,26 +1,26 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = (client, player, track) => {
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.previous)
       .setCustomId("Bot-musicprev")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.pause)
       .setCustomId("Bot-musicpause")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.stop)
       .setCustomId("Bot-musicstop")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.next)
       .setCustomId("Bot-musicnext")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
   );
 
   const channel = client.channels.cache.get(player.textChannel);

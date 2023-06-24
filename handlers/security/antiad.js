@@ -1,12 +1,12 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/functions");
 const Schema2 = require("../../database/models/channelList");
 
 module.exports = (client) => {
   client
-    .on(Discord.Events.MessageCreate, async (message) => {
-      if (message.channel.type === Discord.ChannelType.DM || message.author.bot)
+    .on(discord.Events.MessageCreate, async (message) => {
+      if (message.channel.type === discord.ChannelType.DM || message.author.bot)
         return;
       Schema.findOne({ Guild: message.guild.id }, async (err, data) => {
         if (data) {
@@ -22,7 +22,7 @@ module.exports = (client) => {
                     if (
                       data2.Channels.includes(message.channel.id) ||
                       message.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     ) {
                       return;
@@ -33,7 +33,7 @@ module.exports = (client) => {
                     client.embed(
                       {
                         title: `${client.emotes.normal.error}・Moderator`,
-                        desc: `Discord links are not allowed in this server!`,
+                        desc: `discord links are not allowed in this server!`,
                         color: client.config.colors.error,
                         content: `${message.author}`,
                       },
@@ -42,7 +42,7 @@ module.exports = (client) => {
                   } else {
                     if (
                       message.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     )
                       return;
@@ -51,7 +51,7 @@ module.exports = (client) => {
                     client.embed(
                       {
                         title: `${client.emotes.normal.error}・Moderator`,
-                        desc: `Discord links are not allowed in this server!`,
+                        desc: `discord links are not allowed in this server!`,
                         color: client.config.colors.error,
                         content: `${message.author}`,
                       },
@@ -76,7 +76,7 @@ module.exports = (client) => {
                     if (
                       data2.Channels.includes(message.channel.id) ||
                       message.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     ) {
                       return;
@@ -96,7 +96,7 @@ module.exports = (client) => {
                   } else {
                     if (
                       message.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     )
                       return;
@@ -122,10 +122,10 @@ module.exports = (client) => {
     .setMaxListeners(0);
 
   client
-    .on(Discord.Events.MessageUpdate, async (oldMessage, newMessage) => {
+    .on(discord.Events.MessageUpdate, async (oldMessage, newMessage) => {
       if (
         oldMessage.content === newMessage.content ||
-        newMessage.channel.type === Discord.ChannelType.DM
+        newMessage.channel.type === discord.ChannelType.DM
       )
         return;
 
@@ -143,18 +143,18 @@ module.exports = (client) => {
                     if (
                       data2.Channels.includes(newMessage.channel.id) ||
                       newMessage.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     ) {
                       return;
                     }
 
                     newMessage.delete();
-                    let error = new Discord.EmbedBuilder()
+                    let error = new discord.EmbedBuilder()
                       .setTitle(`${client.emotes.normal.error}・Moderator`)
                       .setAuthor(client.user.username, client.user.avatarURL())
                       .setDescription(
-                        `Discord links are not allowed in this server!`
+                        `discord links are not allowed in this server!`
                       )
                       .setColor(client.config.colors.error)
                       .setFooter({ text: client.config.discord.footer })
@@ -173,16 +173,16 @@ module.exports = (client) => {
                   } else {
                     if (
                       newMessage.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     )
                       return;
                     newMessage.delete();
-                    let error = new Discord.EmbedBuilder()
+                    let error = new discord.EmbedBuilder()
                       .setTitle(`${client.emotes.normal.error}・Moderator`)
                       .setAuthor(client.user.username, client.user.avatarURL())
                       .setDescription(
-                        `Discord links are not allowed in this server!`
+                        `discord links are not allowed in this server!`
                       )
                       .setColor(client.config.colors.error)
                       .setFooter({ text: client.config.discord.footer })
@@ -217,14 +217,14 @@ module.exports = (client) => {
                     if (
                       data2.Channels.includes(newMessage.channel.id) ||
                       newMessage.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     ) {
                       return;
                     }
 
                     newMessage.delete();
-                    var error = new Discord.EmbedBuilder()
+                    var error = new discord.EmbedBuilder()
                       .setTitle(`${client.emotes.normal.error}・Moderator`)
                       .setAuthor(client.user.username, client.user.avatarURL())
                       .setDescription(`Links are not allowed in this server!`)
@@ -245,12 +245,12 @@ module.exports = (client) => {
                   } else {
                     if (
                       newMessage.member.permissions.has(
-                        Discord.PermissionsBitField.Flags.ManageMessages
+                        discord.PermissionsBitField.Flags.ManageMessages
                       )
                     )
                       return;
                     newMessage.delete();
-                    var error = new Discord.EmbedBuilder()
+                    var error = new discord.EmbedBuilder()
                       .setTitle(`${client.emotes.normal.error}・Moderator`)
                       .setAuthor(client.user.username, client.user.avatarURL())
                       .setDescription(`Links are not allowed in this server!`)

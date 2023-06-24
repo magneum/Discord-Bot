@@ -1,16 +1,16 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client) => {
   client
-    .on(Discord.Events.InteractionCreate, async (interaction) => {
+    .on(discord.Events.InteractionCreate, async (interaction) => {
       if (!interaction.isStringSelectMenu()) return;
 
       if (interaction.customId == "Bot-helppanel") {
         if (interaction.values == "changelogs-Bothelp") {
           interaction.deferUpdate();
 
-          const row = new Discord.ActionRowBuilder().addComponents(
-            new Discord.StringSelectMenuBuilder()
+          const row = new discord.ActionRowBuilder().addComponents(
+            new discord.StringSelectMenuBuilder()
               .setCustomId("Bot-helppanel")
               .setPlaceholder("❌┆Nothing selected")
               .addOptions([

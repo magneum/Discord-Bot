@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const { Canvas } = require("canvacord");
 
 module.exports = async (client, interaction, args) => {
@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
   });
 
   const image = await Canvas.colorfy(userAvatar, "#ff0000");
-  let attach = new Discord.AttachmentBuilder(image, { name: "colorify.png" });
+  let attach = new discord.AttachmentBuilder(image, { name: "colorify.png" });
 
   const embed = client.templateEmbed().setImage("attachment://colorify.png");
   interaction.editReply({ files: [attach], embeds: [embed] });

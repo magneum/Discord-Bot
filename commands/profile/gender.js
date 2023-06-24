@@ -1,10 +1,10 @@
 const db = require("../../database/models/profile");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   db.findOne({ User: interaction.user.id }, async (err, data) => {
     if (data) {
-      const menu = new Discord.StringSelectMenuBuilder()
+      const menu = new discord.StringSelectMenuBuilder()
         .setCustomId("gender-setup")
         .setPlaceholder("❌┆Nothing selected")
         .addOptions(
@@ -25,7 +25,7 @@ module.exports = async (client, interaction, args) => {
           }
         );
 
-      const row = new Discord.ActionRowBuilder().addComponents(menu);
+      const row = new discord.ActionRowBuilder().addComponents(menu);
 
       client
         .embed(
@@ -43,7 +43,7 @@ module.exports = async (client, interaction, args) => {
             .awaitMessageComponent({
               filter,
               max: 1,
-              componentType: Discord.ComponentType.StringSelect,
+              componentType: discord.ComponentType.StringSelect,
             })
             .then((i) => {
               if (i.customId == "gender-setup") {

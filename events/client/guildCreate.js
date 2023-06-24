@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Functions = require("../../database/models/functions");
 
 module.exports = async (client, guild) => {
-  const webhookClient = new Discord.WebhookClient({
+  const webhookClient = new discord.WebhookClient({
     id: client.webhooks.serverLogs.id,
     token: client.webhooks.serverLogs.token,
   });
@@ -26,7 +26,7 @@ module.exports = async (client, guild) => {
         (acc, guildCount) => acc + guildCount,
         0
       );
-      const embed = new Discord.EmbedBuilder()
+      const embed = new discord.EmbedBuilder()
         .setTitle("🟢・Added to a new server!")
         .addFields(
           { name: "Total servers:", value: `${totalGuilds}`, inline: true },
@@ -57,29 +57,29 @@ module.exports = async (client, guild) => {
     let defaultChannel = "";
     guild.channels.cache.forEach((channel) => {
       if (
-        channel.type == Discord.ChannelType.GuildText &&
+        channel.type == discord.ChannelType.GuildText &&
         defaultChannel == ""
       ) {
         if (
           channel
             .permissionsFor(guild.members.me)
-            .has(Discord.PermissionFlagsBits.SendMessages)
+            .has(discord.PermissionFlagsBits.SendMessages)
         ) {
           defaultChannel = channel;
         }
       }
     });
 
-    let row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
+    let row = new discord.ActionRowBuilder().addComponents(
+      new discord.ButtonBuilder()
         .setLabel("Invite")
         .setURL(client.config.discord.botInvite)
-        .setStyle(Discord.ButtonStyle.Link),
+        .setStyle(discord.ButtonStyle.Link),
 
-      new Discord.ButtonBuilder()
+      new discord.ButtonBuilder()
         .setLabel("Support server")
         .setURL(client.config.discord.serverInvite)
-        .setStyle(Discord.ButtonStyle.Link)
+        .setStyle(discord.ButtonStyle.Link)
     );
 
     client.embed(

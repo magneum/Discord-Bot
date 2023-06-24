@@ -1,7 +1,7 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
 const { ChannelType } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -24,16 +24,16 @@ module.exports = {
     await interaction.deferReply({ fetchReply: true });
     const perms = await client.checkPerms(
       {
-        flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-        perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+        flags: [discord.PermissionsBitField.Flags.ManageMessages],
+        perms: [discord.PermissionsBitField.Flags.ManageMessages],
       },
       interaction
     );
 
     if (perms == false) return;
 
-    let row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.StringSelectMenuBuilder()
+    let row = new discord.ActionRowBuilder().addComponents(
+      new discord.StringSelectMenuBuilder()
         .setCustomId("embedSelect")
         .setPlaceholder("Nothing selected")
         .addOptions([
@@ -94,15 +94,15 @@ module.exports = {
         ])
     );
 
-    let row2 = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
+    let row2 = new discord.ActionRowBuilder().addComponents(
+      new discord.ButtonBuilder()
         .setCustomId("send_embed")
         .setEmoji("✅")
         .setLabel("Send embed")
-        .setStyle(Discord.ButtonStyle.Success)
+        .setStyle(discord.ButtonStyle.Success)
     );
 
-    let embed = new Discord.EmbedBuilder().setDescription(
+    let embed = new discord.EmbedBuilder().setDescription(
       `Please select some options`
     );
 

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const {
   AudioPlayerStatus,
   createAudioResource,
@@ -29,7 +29,7 @@ module.exports = (client) => {
     connection.subscribe(player);
 
     setTimeout(() => {
-      if (channel.type == Discord.ChannelType.GuildStageVoice) {
+      if (channel.type == discord.ChannelType.GuildStageVoice) {
         interaction.guild.members.me.voice.setSuppressed(false);
       }
     }, 500);

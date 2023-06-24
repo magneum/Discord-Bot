@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const emoji = interaction.options.getString("emoji");
-  const parsedEmoji = Discord.parseEmoji(emoji);
+  const parsedEmoji = discord.parseEmoji(emoji);
 
   if (parsedEmoji) {
     const ex = parsedEmoji.animated ? ".gif" : ".png";

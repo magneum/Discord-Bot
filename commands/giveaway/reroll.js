@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const ms = require("ms");
 
 /**
  *
- * @param {Discord.Client} client
- * @param {Discord.Interaction} interaction
+ * @param {discord.Client} client
+ * @param {discord.Interaction} interaction
  * @param {*} args
  * @returns
  */

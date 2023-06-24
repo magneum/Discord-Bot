@@ -101,7 +101,7 @@ module.exports = {
         )
     )
 
-    // Discord Sounds
+    // discord Sounds
 
     .addSubcommandGroup((group) =>
       group
@@ -129,7 +129,7 @@ module.exports = {
         )
     )
 
-    // Discord Sounds
+    // discord Sounds
 
     .addSubcommandGroup((group) =>
       group

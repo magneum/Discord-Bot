@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Voice = require("@discordjs/voice");
 
 const Schema = require("../../database/models/music");
@@ -24,7 +24,7 @@ module.exports = (client) => {
     ).catch(() => {});
   };
 
-  client.connectToChannel = async function (channel = Discord.VoiceChannel) {
+  client.connectToChannel = async function (channel = discord.VoiceChannel) {
     const connection = Voice.joinVoiceChannel({
       channelId: channel.id,
       guildId: channel.guild.id,
@@ -32,7 +32,7 @@ module.exports = (client) => {
     });
 
     setTimeout(() => {
-      if (channel.type == Discord.ChannelType.GuildStageVoice) {
+      if (channel.type == discord.ChannelType.GuildStageVoice) {
         channel.guild.members.me.voice.setSuppressed(false);
       }
     }, 500);
@@ -84,7 +84,7 @@ module.exports = (client) => {
     );
   });
 
-  client.on(Discord.Events.ClientReady, async () => {
+  client.on(discord.Events.ClientReady, async () => {
     client.startStream(
       process.env.RADIO ||
         "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538"

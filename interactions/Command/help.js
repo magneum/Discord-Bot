@@ -1,6 +1,6 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
 
@@ -17,8 +17,8 @@ module.exports = {
 
   run: async (client, interaction, args) => {
     await interaction.deferReply({ fetchReply: true });
-    const row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.StringSelectMenuBuilder()
+    const row = new discord.ActionRowBuilder().addComponents(
+      new discord.StringSelectMenuBuilder()
         .setCustomId("Bot-helppanel")
         .setPlaceholder("❌┆Nothing selected")
         .addOptions([

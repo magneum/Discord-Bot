@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/boostChannels");
 const Schema2 = require("../../database/models/boostMessage");

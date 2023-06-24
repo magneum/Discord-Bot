@@ -1,9 +1,9 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/stats");
 
 module.exports = async (client, channel, guild) => {
-  if (channel.type == Discord.ChannelType.GuildText) {
+  if (channel.type == discord.ChannelType.GuildText) {
     try {
       var channelName = await client.getTemplate(guild);
       channelName = channelName.replace(`{emoji}`, "💬");
@@ -11,7 +11,7 @@ module.exports = async (client, channel, guild) => {
         `{name}`,
         `Text Channels: ${
           guild.channels.cache.filter(
-            (channel) => channel.type === Discord.ChannelType.GuildText
+            (channel) => channel.type === discord.ChannelType.GuildText
           ).size || 0
         }`
       );

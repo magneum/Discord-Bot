@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const getRandomString = (length) => {
@@ -139,35 +139,35 @@ module.exports = async (client, interaction, args) => {
       newappleLoc();
     }
 
-    lock1 = new Discord.ButtonBuilder()
+    lock1 = new discord.ButtonBuilder()
       .setLabel("\u200b")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
       .setCustomId(id1)
       .setDisabled(true);
-    w = new Discord.ButtonBuilder()
+    w = new discord.ButtonBuilder()
       .setEmoji("⬆️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id2);
-    lock2 = new Discord.ButtonBuilder()
+    lock2 = new discord.ButtonBuilder()
       .setLabel("\u200b")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
       .setCustomId(id7)
       .setDisabled(true);
-    a = new Discord.ButtonBuilder()
+    a = new discord.ButtonBuilder()
       .setEmoji("⬅️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id3);
-    s = new Discord.ButtonBuilder()
+    s = new discord.ButtonBuilder()
       .setEmoji("⬇️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id4);
-    d = new Discord.ButtonBuilder()
+    d = new discord.ButtonBuilder()
       .setEmoji("➡️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id5);
-    stopy = new Discord.ButtonBuilder()
+    stopy = new discord.ButtonBuilder()
       .setLabel("Cancel")
-      .setStyle(Discord.ButtonStyle.Danger)
+      .setStyle(discord.ButtonStyle.Danger)
       .setCustomId(id6);
 
     client.embed(
@@ -197,39 +197,39 @@ module.exports = async (client, interaction, args) => {
       newappleLoc();
     }
 
-    lock1 = new Discord.ButtonBuilder()
+    lock1 = new discord.ButtonBuilder()
       .setLabel("\u200b")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
       .setCustomId(id1)
       .setDisabled(true);
-    w = new Discord.ButtonBuilder()
+    w = new discord.ButtonBuilder()
       .setEmoji("⬆️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id2)
       .setDisabled(true);
-    lock2 = new Discord.ButtonBuilder()
+    lock2 = new discord.ButtonBuilder()
       .setLabel("\u200b")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
       .setCustomId(id7)
       .setDisabled(true);
-    a = new Discord.ButtonBuilder()
+    a = new discord.ButtonBuilder()
       .setEmoji("⬅️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id3)
       .setDisabled(true);
-    s = new Discord.ButtonBuilder()
+    s = new discord.ButtonBuilder()
       .setEmoji("⬇️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id4)
       .setDisabled(true);
-    d = new Discord.ButtonBuilder()
+    d = new discord.ButtonBuilder()
       .setEmoji("➡️")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
       .setCustomId(id5)
       .setDisabled(true);
-    stopy = new Discord.ButtonBuilder()
+    stopy = new discord.ButtonBuilder()
       .setLabel("Cancel")
-      .setStyle(Discord.ButtonStyle.Danger)
+      .setStyle(discord.ButtonStyle.Danger)
       .setCustomId(id6)
       .setDisabled(true);
 
@@ -260,35 +260,35 @@ module.exports = async (client, interaction, args) => {
   snake = [{ x: 5, y: 5 }];
   newappleLoc();
 
-  lock1 = new Discord.ButtonBuilder()
+  lock1 = new discord.ButtonBuilder()
     .setLabel("\u200b")
-    .setStyle(Discord.ButtonStyle.Secondary)
+    .setStyle(discord.ButtonStyle.Secondary)
     .setCustomId(id1)
     .setDisabled(true);
-  w = new Discord.ButtonBuilder()
+  w = new discord.ButtonBuilder()
     .setEmoji("⬆️")
-    .setStyle(Discord.ButtonStyle.Primary)
+    .setStyle(discord.ButtonStyle.Primary)
     .setCustomId(id2);
-  lock2 = new Discord.ButtonBuilder()
+  lock2 = new discord.ButtonBuilder()
     .setLabel("\u200b")
-    .setStyle(Discord.ButtonStyle.Secondary)
+    .setStyle(discord.ButtonStyle.Secondary)
     .setCustomId(id7)
     .setDisabled(true);
-  a = new Discord.ButtonBuilder()
+  a = new discord.ButtonBuilder()
     .setEmoji("⬅️")
-    .setStyle(Discord.ButtonStyle.Primary)
+    .setStyle(discord.ButtonStyle.Primary)
     .setCustomId(id3);
-  s = new Discord.ButtonBuilder()
+  s = new discord.ButtonBuilder()
     .setEmoji("⬇️")
-    .setStyle(Discord.ButtonStyle.Primary)
+    .setStyle(discord.ButtonStyle.Primary)
     .setCustomId(id4);
-  d = new Discord.ButtonBuilder()
+  d = new discord.ButtonBuilder()
     .setEmoji("➡️")
-    .setStyle(Discord.ButtonStyle.Primary)
+    .setStyle(discord.ButtonStyle.Primary)
     .setCustomId(id5);
-  stopy = new Discord.ButtonBuilder()
+  stopy = new discord.ButtonBuilder()
     .setLabel("Cancel")
-    .setStyle(Discord.ButtonStyle.Danger)
+    .setStyle(discord.ButtonStyle.Danger)
     .setCustomId(id6);
 
   client
@@ -312,7 +312,7 @@ module.exports = async (client, interaction, args) => {
     )
     .then(async (m) => {
       const collector = interaction.channel.createMessageComponentCollector({
-        componentType: Discord.ComponentType.Button,
+        componentType: discord.ComponentType.Button,
       });
 
       collector.on("collect", async (btn) => {

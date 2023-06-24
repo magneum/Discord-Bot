@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const pop = require("popcat-wrapper");
 
 module.exports = async (client, interaction, args) => {
@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
   });
 
   const image = await pop.invert(userAvatar);
-  let attach = new Discord.AttachmentBuilder(image, { name: "invert.png" });
+  let attach = new discord.AttachmentBuilder(image, { name: "invert.png" });
   const embed = client.templateEmbed().setImage("attachment://invert.png");
   interaction.editReply({ files: [attach], embeds: [embed] });
 };

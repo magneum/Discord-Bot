@@ -1,5 +1,5 @@
 const { ContextMenuCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/warnings");
 
@@ -8,8 +8,8 @@ module.exports = {
   run: async (client, interaction, args) => {
     const perms = await client.checkPerms(
       {
-        flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-        perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+        flags: [discord.PermissionsBitField.Flags.ManageMessages],
+        perms: [discord.PermissionsBitField.Flags.ManageMessages],
       },
       interaction
     );

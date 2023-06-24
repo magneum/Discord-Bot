@@ -1,6 +1,6 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const Schema = require("../../database/models/music");
 
@@ -51,8 +51,8 @@ module.exports = {
     await interaction.deferReply({ fetchReply: true });
     const perms = await client.checkUserPerms(
       {
-        flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-        perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+        flags: [discord.PermissionsBitField.Flags.ManageMessages],
+        perms: [discord.PermissionsBitField.Flags.ManageMessages],
       },
       interaction
     );

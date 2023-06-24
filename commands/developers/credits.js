@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/votecredits");
 
-const webhookClientLogs = new Discord.WebhookClient({
+const webhookClientLogs = new discord.WebhookClient({
   id: "",
   token: "",
 });
@@ -33,7 +33,7 @@ module.exports = async (client, interaction, args) => {
       interaction
     );
 
-    let embedLogs = new Discord.EmbedBuilder()
+    let embedLogs = new discord.EmbedBuilder()
       .setTitle(`🪙・Credits added`)
       .setDescription(`Added credits to ${user} (${user.id})`)
       .addFields(
@@ -66,7 +66,7 @@ module.exports = async (client, interaction, args) => {
       interaction
     );
 
-    let embedLogs = new Discord.EmbedBuilder()
+    let embedLogs = new discord.EmbedBuilder()
       .setTitle(`🪙・Credits removed`)
       .setDescription(`Removed credits from ${user} (${user.id})`)
       .addFields(

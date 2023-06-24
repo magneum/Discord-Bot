@@ -1,9 +1,9 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client) => {
   const guildInvites = new Map();
 
-  client.on(Discord.Events.InviteCreate, async (invite) => {
+  client.on(discord.Events.InviteCreate, async (invite) => {
     try {
       const invites = await invite.guild.invites.fetch().catch(() => {});
 
@@ -14,7 +14,7 @@ module.exports = async (client) => {
     } catch {}
   });
 
-  client.once(Discord.Events.ClientReady, async () => {
+  client.once(discord.Events.ClientReady, async () => {
     setTimeout(() => {
       try {
         client.guilds.cache.forEach(async (guild) => {
@@ -37,7 +37,7 @@ module.exports = async (client) => {
     }, 1000);
   });
 
-  client.on(Discord.Events.GuildCreate, async (guild) => {
+  client.on(discord.Events.GuildCreate, async (guild) => {
     try {
       if (!guild || !guild.invites) return;
 
@@ -54,13 +54,13 @@ module.exports = async (client) => {
     } catch (e) {}
   });
 
-  client.on(Discord.Events.GuildDelete, async (guild) => {
+  client.on(discord.Events.GuildDelete, async (guild) => {
     try {
       guildInvites.delete(guild.id);
     } catch (e) {}
   });
 
-  client.on(Discord.Events.GuildMemberAdd, async (member) => {
+  client.on(discord.Events.GuildMemberAdd, async (member) => {
     try {
       const cachedInvites = await guildInvites.get(member.guild.id);
       const newInvites = await member.guild.invites.fetch().catch(() => {

@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   let verifLevels = {
@@ -92,7 +92,7 @@ module.exports = async (client, interaction, args) => {
           name: "Text Channels: ",
           value: `${
             interaction.guild.channels.cache.filter(
-              (channel) => channel.type === Discord.ChannelType.GuildText
+              (channel) => channel.type === discord.ChannelType.GuildText
             ).size
           } channels!`,
           inline: true,
@@ -101,7 +101,7 @@ module.exports = async (client, interaction, args) => {
           name: "Voice Channels:",
           value: `${
             interaction.guild.channels.cache.filter(
-              (channel) => channel.type === Discord.ChannelType.GuildVoice
+              (channel) => channel.type === discord.ChannelType.GuildVoice
             ).size
           } channels!`,
           inline: true,
@@ -110,7 +110,7 @@ module.exports = async (client, interaction, args) => {
           name: "Stage Channels:",
           value: `${
             interaction.guild.channels.cache.filter(
-              (channel) => channel.type === Discord.ChannelType.GuildStageVoice
+              (channel) => channel.type === discord.ChannelType.GuildStageVoice
             ).size
           } channels!`,
           inline: true,
@@ -120,7 +120,7 @@ module.exports = async (client, interaction, args) => {
           value: `${
             interaction.guild.channels.cache.filter(
               (channel) =>
-                channel.type === Discord.ChannelType.GuildAnnouncement
+                channel.type === discord.ChannelType.GuildAnnouncement
             ).size
           } channels!`,
           inline: true,

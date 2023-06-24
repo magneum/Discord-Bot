@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = (client, player, track) => {
   player.destroy(player.guild.id);

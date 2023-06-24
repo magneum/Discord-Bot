@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const model = require("../../database/models/badge");
 
-const webhookClientLogs = new Discord.WebhookClient({
+const webhookClientLogs = new discord.WebhookClient({
   id: "",
   token: "",
 });
@@ -92,7 +92,7 @@ module.exports = async (client, interaction, args) => {
       );
     }
 
-    let embedLogs = new Discord.EmbedBuilder()
+    let embedLogs = new discord.EmbedBuilder()
       .setTitle(`📛・Badge added`)
       .setDescription(`Added a new badge to ${member} (${member.id})`)
       .addFields(
@@ -162,7 +162,7 @@ module.exports = async (client, interaction, args) => {
       );
     }
 
-    let embedLogs = new Discord.EmbedBuilder()
+    let embedLogs = new discord.EmbedBuilder()
       .setTitle(`📛・Badge removed`)
       .setDescription(`Removed a badge from ${member} (${member.id})`)
       .addFields(

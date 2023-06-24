@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.ManageEmojisAndStickers],
-      perms: [Discord.PermissionsBitField.Flags.ManageEmojisAndStickers],
+      flags: [discord.PermissionsBitField.Flags.ManageEmojisAndStickers],
+      perms: [discord.PermissionsBitField.Flags.ManageEmojisAndStickers],
     },
     interaction
   );
@@ -13,7 +13,7 @@ module.exports = async (client, interaction, args) => {
 
   const rawEmoji = interaction.options.getString("emoji");
   const role = interaction.options.getRole("role");
-  const parsedEmoji = Discord.parseEmoji(rawEmoji);
+  const parsedEmoji = discord.parseEmoji(rawEmoji);
 
   if (parsedEmoji.id) {
     const extension = parsedEmoji.animated ? ".gif" : ".png";

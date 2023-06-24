@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const url = interaction.options.getString("url");
@@ -13,12 +13,12 @@ module.exports = async (client, interaction, args) => {
       interaction
     );
 
-  let button = new Discord.ButtonBuilder()
+  let button = new discord.ButtonBuilder()
     .setLabel(`${text}`)
     .setURL(`${url}`)
-    .setStyle(Discord.ButtonStyle.Link);
+    .setStyle(discord.ButtonStyle.Link);
 
-  let row = new Discord.ActionRowBuilder().addComponents(button);
+  let row = new discord.ActionRowBuilder().addComponents(button);
 
   client.embed(
     {

@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 module.exports = async (client, interaction, args) => {
   fetch(`https://www.reddit.com/r/memes` + `.json?sort=top&t=week&limit=100`)
     .then((res) => res.json())
@@ -7,7 +7,7 @@ module.exports = async (client, interaction, args) => {
       let i = Math.floor(Math.random() * json.data.children.length);
       let image = json.data.children[i].data.url;
       let caption = json.data.children[i].data.title;
-      let embed = new Discord.EmbedBuilder()
+      let embed = new discord.EmbedBuilder()
         .setTitle(caption)
         .setImage(image)
         .setColor(client.config.colors.normal)

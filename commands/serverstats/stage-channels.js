@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/stats");
 
@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
     `{name}`,
     `Stage Channels: ${
       interaction.guild.channels.cache.filter(
-        (channel) => channel.type === Discord.ChannelType.GuildStageVoice
+        (channel) => channel.type === discord.ChannelType.GuildStageVoice
       ).size || 0
     }`
   );
@@ -17,10 +17,10 @@ module.exports = async (client, interaction, args) => {
   await interaction.guild.channels
     .create({
       name: channelName,
-      type: Discord.ChannelType.GuildVoice,
+      type: discord.ChannelType.GuildVoice,
       permissionOverwrites: [
         {
-          deny: [Discord.PermissionsBitField.Flags.Connect],
+          deny: [discord.PermissionsBitField.Flags.Connect],
           id: interaction.guild.id,
         },
       ],

@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
-  const row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.StringSelectMenuBuilder()
+  const row = new discord.ActionRowBuilder().addComponents(
+    new discord.StringSelectMenuBuilder()
       .setCustomId("Bot-linkspanel")
       .setPlaceholder("❌┆Nothing selected")
       .addOptions([

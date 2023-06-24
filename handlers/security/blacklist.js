@@ -1,11 +1,11 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const BlackList = require("../../database/models/blacklist");
 
 module.exports = async (client) => {
   client
-    .on(Discord.Events.MessageCreate, async (message) => {
-      if (message.channel.type === Discord.ChannelType.DM) return;
+    .on(discord.Events.MessageCreate, async (message) => {
+      if (message.channel.type === discord.ChannelType.DM) return;
 
       try {
         BlackList.findOne({ Guild: message.guild.id }, async (err, data) => {
@@ -32,10 +32,10 @@ module.exports = async (client) => {
     .setMaxListeners(0);
 
   client
-    .on(Discord.Events.MessageUpdate, async (oldMessage, newMessage) => {
+    .on(discord.Events.MessageUpdate, async (oldMessage, newMessage) => {
       if (
         oldMessage.content === newMessage.content ||
-        newMessage.channel.type === Discord.ChannelType.DM
+        newMessage.channel.type === discord.ChannelType.DM
       )
         return;
       try {

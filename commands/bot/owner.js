@@ -11,7 +11,7 @@ module.exports = async (client, interaction, args) => {
           inline: true,
         },
         {
-          name: "🏷┆Discord tag",
+          name: "🏷┆discord tag",
           value: `</Magneum>#0001`,
           inline: true,
         },

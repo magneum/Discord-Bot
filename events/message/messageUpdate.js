@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, oldMessage, newMessage) => {
   try {
@@ -9,14 +9,14 @@ module.exports = async (client, oldMessage, newMessage) => {
     const logsChannel = await client.getLogs(oldMessage.guild.id);
     if (!logsChannel) return;
 
-    let row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
+    let row = new discord.ActionRowBuilder().addComponents(
+      new discord.ButtonBuilder()
         .setEmoji("🔗")
         .setLabel("Jump to the Message")
         .setURL(
           `https://discordapp.com/channels/${newMessage.guild.id}/${newMessage.channel.id}/${newMessage.id}`
         )
-        .setStyle(Discord.ButtonStyle.Link)
+        .setStyle(discord.ButtonStyle.Link)
     );
 
     client

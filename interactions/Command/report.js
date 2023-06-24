@@ -1,6 +1,6 @@
 const { CommandInteraction, Client } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -30,7 +30,7 @@ module.exports = {
 
   run: async (client, interaction, args) => {
     await interaction.deferReply({ fetchReply: true });
-    const webhookClient = new Discord.WebhookClient({
+    const webhookClient = new discord.WebhookClient({
       id: client.webhooks.bugReportLogs.id,
       token: client.webhooks.bugReportLogs.token,
     });
@@ -39,7 +39,7 @@ module.exports = {
     const desc = interaction.options.getString("description");
 
     if (type == "bug") {
-      const embed = new Discord.EmbedBuilder()
+      const embed = new discord.EmbedBuilder()
         .setTitle(`📣・New bug report!`)
         .addFields(
           { name: "Report category", value: "Bug", inline: true },
@@ -64,7 +64,7 @@ module.exports = {
         interaction
       );
     } else if (type == "user") {
-      const embed = new Discord.EmbedBuilder()
+      const embed = new discord.EmbedBuilder()
         .setTitle(`📣・New user report!`)
         .addFields(
           { name: "Report category", value: "User", inline: true },

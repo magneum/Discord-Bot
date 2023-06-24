@@ -79,7 +79,7 @@ module.exports = async (client, interaction, args) => {
                     .embed(
                       {
                         title: "💻・Hacking",
-                        desc: `Searching for Discord login...`,
+                        desc: `Searching for discord login...`,
                         type: "edit",
                       },
                       msg
@@ -94,7 +94,7 @@ module.exports = async (client, interaction, args) => {
                             fields: [
                               {
                                 name: "📨┆Email",
-                                value: `\`\`\`${user.username}onDiscord@gmail.com\`\`\``,
+                                value: `\`\`\`${user.username}ondiscord@gmail.com\`\`\``,
                               },
                               {
                                 name: "🔑┆Password",
@@ -111,7 +111,7 @@ module.exports = async (client, interaction, args) => {
                             .embed(
                               {
                                 title: "💻・Hacking",
-                                desc: `Search for Discord token...`,
+                                desc: `Search for discord token...`,
                                 type: "edit",
                               },
                               msg
@@ -146,7 +146,7 @@ module.exports = async (client, interaction, args) => {
                                         .embed(
                                           {
                                             title: "💻・Hacking",
-                                            desc: `Reporting account to Discord for breaking TOS...`,
+                                            desc: `Reporting account to discord for breaking TOS...`,
                                             type: "edit",
                                           },
                                           msg

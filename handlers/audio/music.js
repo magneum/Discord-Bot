@@ -1,9 +1,9 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const Voice = require("@discordjs/voice");
 
 module.exports = (client) => {
   client
-    .on(Discord.Events.InteractionCreate, async (interaction) => {
+    .on(discord.Events.InteractionCreate, async (interaction) => {
       if (interaction.isButton()) {
         switch (interaction.customId) {
           case "Bot-musicpause":
@@ -44,26 +44,26 @@ function handleMusicPause(interaction, client) {
 
   const embedData = interaction.message.embeds[0];
 
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.previous)
       .setCustomId("Bot-musicprev")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.play)
       .setCustomId("Bot-musicstart")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.stop)
       .setCustomId("Bot-musicstop")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.next)
       .setCustomId("Bot-musicnext")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
   );
 
   client.embed(
@@ -89,26 +89,26 @@ function handleMusicStart(interaction, client) {
 
   const embedData = interaction.message.embeds[0];
 
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.previous)
       .setCustomId("Bot-musicprev")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.pause)
       .setCustomId("Bot-musicpause")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.stop)
       .setCustomId("Bot-musicstop")
-      .setStyle(Discord.ButtonStyle.Secondary),
+      .setStyle(discord.ButtonStyle.Secondary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji(client.emotes.music.next)
       .setCustomId("Bot-musicnext")
-      .setStyle(Discord.ButtonStyle.Secondary)
+      .setStyle(discord.ButtonStyle.Secondary)
   );
 
   client.embed(
@@ -150,26 +150,26 @@ function handleMusicNext(interaction, client) {
 
   const track = player.queue.current;
 
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setEmoji("⏮️")
       .setCustomId("Bot-musicprev")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏸️")
       .setCustomId("Bot-musicpause")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏹️")
       .setCustomId("Bot-musicstop")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏭️")
       .setCustomId("Bot-musicnext")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
   );
 
   client.embed(
@@ -210,26 +210,26 @@ function handleMusicPrevious(interaction, client) {
 
   const track = player.queue.previous;
 
-  let row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  let row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setEmoji("⏮️")
       .setCustomId("Bot-musicprev")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏸️")
       .setCustomId("Bot-musicpause")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏹️")
       .setCustomId("Bot-musicstop")
-      .setStyle(Discord.ButtonStyle.Primary),
+      .setStyle(discord.ButtonStyle.Primary),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setEmoji("⏭️")
       .setCustomId("Bot-musicnext")
-      .setStyle(Discord.ButtonStyle.Primary)
+      .setStyle(discord.ButtonStyle.Primary)
   );
 
   client.embed(

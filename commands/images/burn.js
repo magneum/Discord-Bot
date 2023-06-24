@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const { Canvas } = require("canvacord");
 
 module.exports = async (client, interaction, args) => {
@@ -14,7 +14,7 @@ module.exports = async (client, interaction, args) => {
 
   const img = await Canvas.burn(userAvatar, lvl);
 
-  let attach = new Discord.AttachmentBuilder(img, { name: "burn.png" });
+  let attach = new discord.AttachmentBuilder(img, { name: "burn.png" });
   const embed = client.templateEmbed().setImage("attachment://burn.png");
   interaction.editReply({ files: [attach], embeds: [embed] });
 };

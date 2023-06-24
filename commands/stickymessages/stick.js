@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/stickymessages");
 
@@ -6,7 +6,7 @@ module.exports = async (client, interaction, args) => {
   const channel = interaction.options.getChannel("channel");
   const content = interaction.options.getString("message");
 
-  const embed = new Discord.EmbedBuilder()
+  const embed = new discord.EmbedBuilder()
     .setDescription(`${content}`)
     .setColor(client.config.colors.normal);
   channel.send({ embeds: [embed] }).then((msg) => {

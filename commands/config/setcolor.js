@@ -1,12 +1,12 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/functions");
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkUserPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.Administrator],
-      perms: [Discord.PermissionsBitField.Flags.Administrator],
+      flags: [discord.PermissionsBitField.Flags.Administrator],
+      perms: [discord.PermissionsBitField.Flags.Administrator],
     },
     interaction
   );

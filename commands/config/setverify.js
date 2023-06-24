@@ -1,12 +1,12 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/verify");
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkUserPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.ManageMessages],
-      perms: [Discord.PermissionsBitField.Flags.ManageMessages],
+      flags: [discord.PermissionsBitField.Flags.ManageMessages],
+      perms: [discord.PermissionsBitField.Flags.ManageMessages],
     },
     interaction
   );
@@ -51,11 +51,11 @@ module.exports = async (client, interaction, args) => {
       interaction
     );
 
-    const row = new Discord.ActionRowBuilder().addComponents(
-      new Discord.ButtonBuilder()
+    const row = new discord.ActionRowBuilder().addComponents(
+      new discord.ButtonBuilder()
         .setCustomId("Bot_verify")
         .setEmoji("✅")
-        .setStyle(Discord.ButtonStyle.Success)
+        .setStyle(discord.ButtonStyle.Success)
     );
 
     client.embed(

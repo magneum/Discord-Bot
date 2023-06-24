@@ -1,16 +1,16 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client) => {
   client
-    .on(Discord.Events.InteractionCreate, async (interaction) => {
+    .on(discord.Events.InteractionCreate, async (interaction) => {
       if (!interaction.isStringSelectMenu()) return;
 
       if (interaction.customId == "Bot-helppanel") {
         if (interaction.values == "invite-Bothelp") {
           interaction.deferUpdate();
 
-          const row2 = new Discord.ActionRowBuilder().addComponents(
-            new Discord.StringSelectMenuBuilder()
+          const row2 = new discord.ActionRowBuilder().addComponents(
+            new discord.StringSelectMenuBuilder()
               .setCustomId("Bot-helppanel")
               .setPlaceholder("❌┆Nothing selected")
               .addOptions([
@@ -41,16 +41,16 @@ module.exports = async (client) => {
               ])
           );
 
-          let row = new Discord.ActionRowBuilder().addComponents(
-            new Discord.ButtonBuilder()
+          let row = new discord.ActionRowBuilder().addComponents(
+            new discord.ButtonBuilder()
               .setLabel("Invite")
               .setURL(client.config.discord.botInvite)
-              .setStyle(Discord.ButtonStyle.Link),
+              .setStyle(discord.ButtonStyle.Link),
 
-            new Discord.ButtonBuilder()
+            new discord.ButtonBuilder()
               .setLabel("Support server")
               .setURL(client.config.discord.serverInvite)
-              .setStyle(Discord.ButtonStyle.Link)
+              .setStyle(discord.ButtonStyle.Link)
           );
 
           client.embed(

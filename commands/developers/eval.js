@@ -1,9 +1,9 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const { inspect } = require("util");
 
 module.exports = async (client, interaction, args) => {
-  const webhookClientLogs = new Discord.WebhookClient({
+  const webhookClientLogs = new discord.WebhookClient({
     id: client.webhooks.evalLogs.id,
     token: client.webhooks.evalLogs.token,
   });
@@ -50,7 +50,7 @@ module.exports = async (client, interaction, args) => {
         interaction
       );
 
-      const embed2 = new Discord.EmbedBuilder()
+      const embed2 = new discord.EmbedBuilder()
         .setTitle(`${interaction.user.tag} used eval command`)
         .addFields(
           { name: "📥┇Input", value: `\`\`\`${code}\`\`\``, inline: false },
@@ -67,11 +67,11 @@ module.exports = async (client, interaction, args) => {
         embeds: [embed2],
       });
     } else {
-      const output = new Discord.AttachmentBuilder(
+      const output = new discord.AttachmentBuilder(
         Buffer.from(outputResponse),
         { name: "output.txt" }
       );
-      var embed2 = new Discord.EmbedBuilder()
+      var embed2 = new discord.EmbedBuilder()
         .setAuthor(client.user.username, client.user.avatarURL())
         .addFields({
           name: "📥┇Input",

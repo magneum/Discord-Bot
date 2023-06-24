@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const DIG = require("discord-image-generation");
 
 module.exports = async (client, interaction, args) => {
@@ -15,7 +15,7 @@ module.exports = async (client, interaction, args) => {
     extension: "png",
   });
   const image = await new DIG.Spank().getImage(avatar, userAvatar);
-  let attach = new Discord.AttachmentBuilder(image, { name: "spank.png" });
+  let attach = new discord.AttachmentBuilder(image, { name: "spank.png" });
 
   const embed = client.templateEmbed().setImage("attachment://spank.png");
   interaction.editReply({ files: [attach], embeds: [embed] });

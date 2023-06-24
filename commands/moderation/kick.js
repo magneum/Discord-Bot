@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const perms = await client.checkPerms(
     {
-      flags: [Discord.PermissionsBitField.Flags.KickMembers],
-      perms: [Discord.PermissionsBitField.Flags.KickMembers],
+      flags: [discord.PermissionsBitField.Flags.KickMembers],
+      perms: [discord.PermissionsBitField.Flags.KickMembers],
     },
     interaction
   );
@@ -17,8 +17,8 @@ module.exports = async (client, interaction, args) => {
   const reason = interaction.options.getString("reason") || "Not given";
 
   if (
-    member.permissions.has(Discord.PermissionsBitField.Flags.KickMembers) ||
-    member.permissions.has(Discord.PermissionsBitField.Flags.KickMembers)
+    member.permissions.has(discord.PermissionsBitField.Flags.KickMembers) ||
+    member.permissions.has(discord.PermissionsBitField.Flags.KickMembers)
   )
     return client.errNormal(
       {

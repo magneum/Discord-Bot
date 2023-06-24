@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const thanksSchema = require("../../database/models/thanks");
 const thanksAuthor = require("../../database/models/thanksAuthor");

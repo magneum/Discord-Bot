@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   const message = interaction.options.getString("message");
@@ -133,7 +133,7 @@ module.exports = async (client, interaction, args) => {
 
         await client.embed(
           {
-            title: `9. Follow the Discord Community Guidelines`,
+            title: `9. Follow the discord Community Guidelines`,
             desc: `You can find them here: https://discordapp.com/guidelines`,
           },
           interaction.channel

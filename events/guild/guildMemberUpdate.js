@@ -1,10 +1,10 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 /**
  *
- * @param {Discord.Client} client
- * @param {Discord.GuildMember} oldMember
- * @param {Discord.GuildMember} newMember
+ * @param {discord.Client} client
+ * @param {discord.GuildMember} oldMember
+ * @param {discord.GuildMember} newMember
  * @returns
  */
 module.exports = async (client, oldMember, newMember) => {

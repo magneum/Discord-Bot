@@ -1,18 +1,18 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/family");
 
 module.exports = async (client, interaction, args) => {
-  const row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  const row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setCustomId("family_delete")
       .setEmoji("✅")
-      .setStyle(Discord.ButtonStyle.Success),
+      .setStyle(discord.ButtonStyle.Success),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setCustomId("family_stop")
       .setEmoji("❌")
-      .setStyle(Discord.ButtonStyle.Danger)
+      .setStyle(discord.ButtonStyle.Danger)
   );
 
   client.embed(

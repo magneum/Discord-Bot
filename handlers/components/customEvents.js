@@ -1,5 +1,5 @@
 const Schema = require("../../database/models/logChannels");
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client) => {
   client.getLogs = async function (guildId) {
@@ -12,7 +12,7 @@ module.exports = async (client) => {
     }
   };
 
-  client.on(Discord.Events.GuildMemberUpdate, (oldMember, newMember) => {
+  client.on(discord.Events.GuildMemberUpdate, (oldMember, newMember) => {
     if (!oldMember.premiumSince && newMember.premiumSince) {
       client.emit("guildMemberBoost", newMember);
     }
@@ -22,7 +22,7 @@ module.exports = async (client) => {
     }
   });
 
-  client.on(Discord.Events.GuildUpdate, (oldGuild, newGuild) => {
+  client.on(discord.Events.GuildUpdate, (oldGuild, newGuild) => {
     if (oldGuild.premiumTier < newGuild.premiumTier) {
       client.emit(
         "guildBoostLevelUp",
@@ -71,7 +71,7 @@ module.exports = async (client) => {
     }
   });
 
-  client.on(Discord.Events.GuildRoleUpdate, (oldRole, newRole) => {
+  client.on(discord.Events.GuildRoleUpdate, (oldRole, newRole) => {
     if (oldRole.rawPosition !== newRole.rawPosition) {
       client.emit(
         "rolePositionUpdate",
@@ -99,9 +99,9 @@ module.exports = async (client) => {
     }
   });
 
-  client.on(Discord.Events.ChannelUpdate, (oldChannel, newChannel) => {
+  client.on(discord.Events.ChannelUpdate, (oldChannel, newChannel) => {
     if (
-      oldChannel.type === Discord.ChannelType.GuildText &&
+      oldChannel.type === discord.ChannelType.GuildText &&
       oldChannel.topic !== newChannel.topic
     ) {
       client.emit(

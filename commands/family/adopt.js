@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/family");
 
@@ -64,16 +64,16 @@ module.exports = async (client, interaction, args) => {
     );
   }
 
-  const row = new Discord.ActionRowBuilder().addComponents(
-    new Discord.ButtonBuilder()
+  const row = new discord.ActionRowBuilder().addComponents(
+    new discord.ButtonBuilder()
       .setCustomId("adopt_yes")
       .setEmoji("✅")
-      .setStyle(Discord.ButtonStyle.Success),
+      .setStyle(discord.ButtonStyle.Success),
 
-    new Discord.ButtonBuilder()
+    new discord.ButtonBuilder()
       .setCustomId("adopt_deny")
       .setEmoji("❌")
-      .setStyle(Discord.ButtonStyle.Danger)
+      .setStyle(discord.ButtonStyle.Danger)
   );
 
   client.embed(
@@ -92,7 +92,7 @@ module.exports = async (client, interaction, args) => {
   interaction.channel
     .awaitMessageComponent({
       filter,
-      componentType: Discord.ComponentType.Button,
+      componentType: discord.ComponentType.Button,
       time: 60000,
     })
     .then(async (i) => {

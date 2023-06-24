@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 const weather = require("weather-js");
 
 module.exports = async (client, interaction, args) => {

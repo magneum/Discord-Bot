@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = (client) => {
   client.buttonReactions = async function (id, reactions) {
@@ -6,15 +6,15 @@ module.exports = (client) => {
     var sendComponents = [];
 
     reactions.map((emoji) => {
-      let btn = new Discord.ButtonBuilder()
-        .setStyle(Discord.ButtonStyle.Primary)
+      let btn = new discord.ButtonBuilder()
+        .setStyle(discord.ButtonStyle.Primary)
         .setEmoji(`${emoji}`)
         .setCustomId(`reaction_button-${emoji}`);
       return labels.push(btn);
     });
 
     if (labels.length < 5 || labels.length == 5) {
-      const row = new Discord.ActionRowBuilder();
+      const row = new discord.ActionRowBuilder();
 
       row.addComponents(labels.slice(0, 5));
 
@@ -22,8 +22,8 @@ module.exports = (client) => {
     }
 
     if ((labels.length < 10 && labels.length > 5) || labels.length == 10) {
-      const row = new Discord.ActionRowBuilder();
-      const row2 = new Discord.ActionRowBuilder();
+      const row = new discord.ActionRowBuilder();
+      const row2 = new discord.ActionRowBuilder();
 
       row.addComponents(labels.slice(0, 5));
       row2.addComponents(labels.slice(5, 10));
@@ -32,9 +32,9 @@ module.exports = (client) => {
     }
 
     if ((labels.length < 15 && labels.length > 10) || labels.length == 15) {
-      const row = new Discord.ActionRowBuilder();
-      const row2 = new Discord.ActionRowBuilder();
-      const row3 = new Discord.ActionRowBuilder();
+      const row = new discord.ActionRowBuilder();
+      const row2 = new discord.ActionRowBuilder();
+      const row3 = new discord.ActionRowBuilder();
 
       row.addComponents(labels.slice(0, 5));
       row2.addComponents(labels.slice(5, 10));
@@ -44,10 +44,10 @@ module.exports = (client) => {
     }
 
     if ((labels.length < 20 && labels.length > 15) || labels.length == 20) {
-      const row = new Discord.ActionRowBuilder();
-      const row2 = new Discord.ActionRowBuilder();
-      const row3 = new Discord.ActionRowBuilder();
-      const row4 = new Discord.ActionRowBuilder();
+      const row = new discord.ActionRowBuilder();
+      const row2 = new discord.ActionRowBuilder();
+      const row3 = new discord.ActionRowBuilder();
+      const row4 = new discord.ActionRowBuilder();
 
       row.addComponents(labels.slice(0, 5));
       row2.addComponents(labels.slice(5, 10));
@@ -58,11 +58,11 @@ module.exports = (client) => {
     }
 
     if ((labels.length < 25 && labels.length > 20) || labels.length == 25) {
-      const row = new Discord.ActionRowBuilder();
-      const row2 = new Discord.ActionRowBuilder();
-      const row3 = new Discord.ActionRowBuilder();
-      const row4 = new Discord.ActionRowBuilder();
-      const row5 = new Discord.ActionRowBuilder();
+      const row = new discord.ActionRowBuilder();
+      const row2 = new discord.ActionRowBuilder();
+      const row3 = new discord.ActionRowBuilder();
+      const row4 = new discord.ActionRowBuilder();
+      const row5 = new discord.ActionRowBuilder();
 
       row.addComponents(labels.slice(0, 5));
       row2.addComponents(labels.slice(5, 10));

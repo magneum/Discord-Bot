@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 module.exports = async (client, interaction, args) => {
   if (!interaction.member.voice.channel)
@@ -52,7 +52,7 @@ module.exports = async (client, interaction, args) => {
     player.connect();
 
     setTimeout(() => {
-      if (channel.type == Discord.ChannelType.GuildStageVoice) {
+      if (channel.type == discord.ChannelType.GuildStageVoice) {
         interaction.guild.members.me.voice.setSuppressed(false);
       }
     }, 500);
@@ -152,39 +152,39 @@ module.exports = async (client, interaction, args) => {
         filter = (i) => i.user.id === interaction.user.id;
       if (res.tracks.length < max) max = res.tracks.length;
 
-      let row = new Discord.ActionRowBuilder().addComponents(
-        new Discord.ButtonBuilder()
+      let row = new discord.ActionRowBuilder().addComponents(
+        new discord.ButtonBuilder()
           .setEmoji("1️⃣")
           .setCustomId("1")
-          .setStyle(Discord.ButtonStyle.Secondary),
+          .setStyle(discord.ButtonStyle.Secondary),
 
-        new Discord.ButtonBuilder()
+        new discord.ButtonBuilder()
           .setEmoji("2️⃣")
           .setCustomId("2")
-          .setStyle(Discord.ButtonStyle.Secondary),
+          .setStyle(discord.ButtonStyle.Secondary),
 
-        new Discord.ButtonBuilder()
+        new discord.ButtonBuilder()
           .setEmoji("3️⃣")
           .setCustomId("3")
-          .setStyle(Discord.ButtonStyle.Secondary),
+          .setStyle(discord.ButtonStyle.Secondary),
 
-        new Discord.ButtonBuilder()
+        new discord.ButtonBuilder()
           .setEmoji("4️⃣")
           .setCustomId("4")
-          .setStyle(Discord.ButtonStyle.Secondary),
+          .setStyle(discord.ButtonStyle.Secondary),
 
-        new Discord.ButtonBuilder()
+        new discord.ButtonBuilder()
           .setEmoji("5️⃣")
           .setCustomId("5")
-          .setStyle(Discord.ButtonStyle.Secondary)
+          .setStyle(discord.ButtonStyle.Secondary)
       );
 
-      let row2 = new Discord.ActionRowBuilder().addComponents(
-        new Discord.ButtonBuilder()
+      let row2 = new discord.ActionRowBuilder().addComponents(
+        new discord.ButtonBuilder()
           .setEmoji("🛑")
           .setLabel("Cancel")
           .setCustomId("cancel")
-          .setStyle(Discord.ButtonStyle.Danger)
+          .setStyle(discord.ButtonStyle.Danger)
       );
 
       const results = res.tracks
@@ -221,7 +221,7 @@ module.exports = async (client, interaction, args) => {
           filter,
           max: 1,
           time: 30e3,
-          componentType: Discord.ComponentType.Button,
+          componentType: discord.ComponentType.Button,
           errors: ["time"],
         });
       } catch (e) {

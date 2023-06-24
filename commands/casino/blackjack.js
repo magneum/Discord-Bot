@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const discord = require("discord.js");
 
 const db = require("../../database/models/economy");
 
@@ -142,16 +142,16 @@ module.exports = async (client, interaction, args) => {
             dealerMsg += " > " + dealer.score.toString();
           }
 
-          const row = new Discord.ActionRowBuilder().addComponents(
-            new Discord.ButtonBuilder()
+          const row = new discord.ActionRowBuilder().addComponents(
+            new discord.ButtonBuilder()
               .setCustomId("blackjack_hit")
               .setLabel(`Hit`)
-              .setStyle(Discord.ButtonStyle.Primary),
+              .setStyle(discord.ButtonStyle.Primary),
 
-            new Discord.ButtonBuilder()
+            new discord.ButtonBuilder()
               .setCustomId("blackjack_stand")
               .setLabel(`Stand`)
-              .setStyle(Discord.ButtonStyle.Primary)
+              .setStyle(discord.ButtonStyle.Primary)
           );
 
           if (cl) {
