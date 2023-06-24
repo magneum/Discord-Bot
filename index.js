@@ -1,26 +1,8 @@
 const webhook = require("./database/json/webhooks.json");
-const { version } = require("./package.json");
 const config = require("./config/bot.js");
 const Discord = require("discord.js");
 require("dotenv").config("./.env");
 const chalk = require("chalk");
-const axios = require("axios");
-
-axios
-  .get("https://api.github.com/repos/MagneumDev/Discord-Bot/releases/latest")
-  .then((res) => {
-    if (res.data.tag_name !== version) {
-      console.log(
-        chalk.red.bgYellow(
-          "Your bot is not up to date! Please update to the latest version!",
-          version + " -> " + res.data.tag_name
-        )
-      );
-    }
-  })
-  .catch(() => {
-    console.log(chalk.red.bgYellow("Failed to check if bot is up to date!"));
-  });
 
 const webHooksArray = [
   "startLogs",

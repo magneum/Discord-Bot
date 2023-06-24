@@ -47,7 +47,6 @@ const client = new Discord.Client({
 const clientID = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 if (clientID && clientSecret) {
-  // Lavalink client
   client.player = new Manager({
     plugins: [
       new AppleMusic(),
@@ -77,7 +76,6 @@ if (clientID && clientSecret) {
     },
   });
 } else {
-  // Lavalink client
   client.player = new Manager({
     plugins: [new AppleMusic(), new Deezer(), new Facebook()],
     nodes: [
