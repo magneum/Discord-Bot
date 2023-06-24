@@ -1,7 +1,3 @@
-const discord = require("discord.js");
-
-const ticketChannels = require("../../database/models/ticketChannels");
-
 module.exports = async (client, channel) => {
   let types = {
     0: "Text Channel",
@@ -45,18 +41,4 @@ module.exports = async (client, channel) => {
       logsChannel
     )
     .catch(() => {});
-
-  try {
-    ticketChannels.findOne(
-      { Guild: channel.guild.id, channelID: channel.id },
-      async (err, data) => {
-        if (data) {
-          var remove = await ticketChannels.deleteOne({
-            Guild: channel.guild.id,
-            channelID: channel.id,
-          });
-        }
-      }
-    );
-  } catch {}
 };
