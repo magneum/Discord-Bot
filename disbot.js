@@ -3,12 +3,12 @@ require("dotenv").config("./.env");
 const discord = require("discord.js");
 const webhook = require("./database/json/webhooks.json");
 
-webhook["HookLogger"].id = process.env.WEBHOOK_ID;
-webhook["HookLogger"].token = process.env.WEBHOOK_TOKEN;
+webhook["weblog"].id = process.env.WEBHOOK_ID;
+webhook["weblog"].token = process.env.WEBHOOK_TOKEN;
 
-const HookLogger = new discord.WebhookClient({
-  token: webhook.HookLogger.token,
-  id: webhook.HookLogger.id,
+const weblog = new discord.WebhookClient({
+  token: webhook.weblog.token,
+  id: webhook.weblog.id,
 });
 
 const manager = new discord.ShardingManager("./brain.js", {
@@ -42,7 +42,7 @@ console.log(
 console.log("\u001b[0m");
 
 manager.on("shardCreate", async (shard) => {
-  await HookLogger.send({
+  await weblog.send({
     username: "Bot Logs",
     embeds: [
       new discord.EmbedBuilder()
@@ -74,7 +74,7 @@ manager.on("shardCreate", async (shard) => {
   console.log("\u001b[0m");
 
   shard.on("death", async (process) => {
-    await HookLogger.send({
+    await weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -96,7 +96,7 @@ manager.on("shardCreate", async (shard) => {
     });
 
     if (process.exitCode === null) {
-      await HookLogger.send({
+      await weblog.send({
         username: "Bot Logs",
         embeds: [
           new discord.EmbedBuilder()
@@ -124,7 +124,7 @@ manager.on("shardCreate", async (shard) => {
   });
 
   shard.on("shardDisconnect", async (event) => {
-    await HookLogger.send({
+    await weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -142,7 +142,7 @@ manager.on("shardCreate", async (shard) => {
   });
 
   shard.on("shardReconnecting", async () => {
-    await HookLogger.send({
+    await weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -174,7 +174,7 @@ process.on("unhandledRejection", async (error) => {
     error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
   try {
-    await HookLogger.send({
+    await weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -202,7 +202,7 @@ process.on("unhandledRejection", async (error) => {
 process.on("warning", async (warn) => {
   console.warn("Warning:", warn);
   try {
-    await HookLogger.send({
+    await weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder().setTitle("🚨・New warning found").addFields([

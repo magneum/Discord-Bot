@@ -8,20 +8,20 @@
 
 // const disbot = async () => {
 // const tableNames = [
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
-// "HookLogger",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
+// "weblog",
 // ];
 
 // const createTablesIfNotExist = async () => {
@@ -71,20 +71,20 @@
 // }
 // };
 
-// const HookLogger = {
-// tableName: webhook.HookLogger,
+// const weblog = {
+// tableName: webhook.weblog,
 // };
 
-// const HookLogger = {
-// tableName: webhook.HookLogger,
+// const weblog = {
+// tableName: webhook.weblog,
 // };
 
-// const HookLogger = {
-// tableName: webhook.HookLogger,
+// const weblog = {
+// tableName: webhook.weblog,
 // };
 
-// const HookLogger = {
-// tableName: webhook.HookLogger,
+// const weblog = {
+// tableName: webhook.weblog,
 // };
 
 // const manager = new discord.ShardingManager("./heart.js", {
@@ -124,7 +124,7 @@
 // );
 
 // manager.on("shardCreate", async (shard) => {
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -156,7 +156,7 @@
 // );
 
 // shard.on("death", async (process) => {
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -176,7 +176,7 @@
 
 // switch (process.exitCode === null) {
 // case true:
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -204,7 +204,7 @@
 // });
 
 // shard.on("shardDisconnect", async (event) => {
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -219,7 +219,7 @@
 // });
 
 // shard.on("shardReconnecting", async () => {
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -242,7 +242,7 @@
 // if (error.stack && error.stack.length > 950)
 // error.stack = error.stack.slice(0, 950) + "... view console for details";
 // if (!error.stack) return;
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {
@@ -266,7 +266,7 @@
 
 // process.on("warning", async (warn) => {
 // console.warn(chalk.bold.yellow("Warning:"), warn);
-// await sendLog(HookLogger.tableName, {
+// await sendLog(weblog.tableName, {
 // username: "Bot Logs",
 // embeds: [
 // {

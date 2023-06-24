@@ -21,8 +21,8 @@ const fetch = require("node-fetch");
  */
 module.exports = async (client, message) => {
   const dmlog = new discord.WebhookClient({
-    id: client.webhooks.HookLogger.id,
-    token: client.webhooks.HookLogger.token,
+    id: client.webhooks.weblog.id,
+    token: client.webhooks.weblog.token,
   });
 
   if (message.author.bot) return;

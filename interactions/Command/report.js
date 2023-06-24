@@ -31,8 +31,8 @@ module.exports = {
   run: async (client, interaction, args) => {
     await interaction.deferReply({ fetchReply: true });
     const webhookClient = new discord.WebhookClient({
-      id: client.webhooks.HookLogger.id,
-      token: client.webhooks.HookLogger.token,
+      id: client.webhooks.weblog.id,
+      token: client.webhooks.weblog.token,
     });
 
     const type = interaction.options.getString("type");

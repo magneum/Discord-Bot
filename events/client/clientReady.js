@@ -2,9 +2,9 @@ const discord = require("discord.js");
 const chalk = require("chalk");
 
 module.exports = async (client) => {
-  const HookLogger = new discord.WebhookClient({
-    id: client.webhooks.HookLogger.id,
-    token: client.webhooks.HookLogger.token,
+  const weblog = new discord.WebhookClient({
+    id: client.webhooks.weblog.id,
+    token: client.webhooks.weblog.token,
   });
 
   console.log("\u001b[0m");
@@ -34,7 +34,7 @@ module.exports = async (client) => {
       { name: "📃┆State", value: "Ready", inline: true }
     )
     .setColor("#5865F2");
-  HookLogger.send({
+  weblog.send({
     username: "Bot Logs",
     embeds: [embed],
   });

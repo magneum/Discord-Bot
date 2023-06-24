@@ -6,7 +6,7 @@ const levelLogs = require("../../database/models/levelChannels");
 module.exports = async (client, interaction, args) => {
   const choice = interaction.options.getString("setup");
 
-  if (choice == "HookLogger") {
+  if (choice == "weblog") {
     interaction.guild.channels
       .create({
         name: "server-logs",

@@ -5,9 +5,9 @@ const chalk = require("chalk");
 const fs = require("fs");
 
 module.exports = (client) => {
-  const HookLogger = new discord.WebhookClient({
-    id: client.webhooks.HookLogger.id,
-    token: client.webhooks.HookLogger.token,
+  const weblog = new discord.WebhookClient({
+    id: client.webhooks.weblog.id,
+    token: client.webhooks.weblog.token,
   });
 
   const commands = [];
@@ -50,7 +50,7 @@ module.exports = (client) => {
       const embed = new discord.EmbedBuilder()
         .setDescription(`Started refreshing application (/) commands.`)
         .setColor("#5865F2");
-      HookLogger.send({
+      weblog.send({
         username: "Bot Logs",
         embeds: [embed],
       });
@@ -64,7 +64,7 @@ module.exports = (client) => {
           `Successfully reloaded ${commands.length} application (/) commands.`
         )
         .setColor("#5865F2");
-      HookLogger.send({
+      weblog.send({
         username: "Bot Logs",
         embeds: [embedFinal],
       });

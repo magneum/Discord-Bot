@@ -97,8 +97,8 @@ async function connectToDatabase() {
 }
 
 async function setupWebhooks() {
-  client.webhooks["HookLogger"].id = process.env.WEBHOOK_ID;
-  client.webhooks["HookLogger"].token = process.env.WEBHOOK_TOKEN;
+  client.webhooks["weblog"].id = process.env.WEBHOOK_ID;
+  client.webhooks["weblog"].token = process.env.WEBHOOK_TOKEN;
 }
 
 async function loadCommandHandlers() {
@@ -121,7 +121,7 @@ async function setupUnhandledRejectionHandler() {
     if (error.stack && error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
     if (!error.stack) return;
-    HookLogger.send({
+    weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -150,7 +150,7 @@ async function setupUnhandledRejectionHandler() {
 async function setupWarningHandler() {
   process.on("warning", (warn) => {
     console.warn("Warning:", warn);
-    HookLogger.send({
+    weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -178,7 +178,7 @@ async function setupErrorHandler() {
     if (error.stack && error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
     if (!error.stack) return;
-    HookLogger.send({
+    weblog.send({
       username: "Bot Logs",
       embeds: [
         new discord.EmbedBuilder()
@@ -208,9 +208,9 @@ async function setupClient() {
   client.playerManager = new Map();
   client.triviaManager = new Map();
   client.commands = new discord.Collection();
-  client.webhooks["HookLogger"] = new discord.WebhookClient({
-    id: client.webhooks.HookLogger.id,
-    token: client.webhooks.HookLogger.token,
+  client.webhooks["weblog"] = new discord.WebhookClient({
+    id: client.webhooks.weblog.id,
+    token: client.webhooks.weblog.token,
   });
 }
 

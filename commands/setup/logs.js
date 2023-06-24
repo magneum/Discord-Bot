@@ -9,7 +9,7 @@ module.exports = async (client, interaction, args) => {
   const channel = interaction.options.getChannel("channel");
 
   const choices = {
-    HookLogger: logs,
+    weblog: logs,
     levelLogs: levelLogs,
     boostLogs: boostLogs,
   };

@@ -4,8 +4,8 @@ const { inspect } = require("util");
 
 module.exports = async (client, interaction, args) => {
   const webhookClientLogs = new discord.WebhookClient({
-    id: client.webhooks.HookLogger.id,
-    token: client.webhooks.HookLogger.token,
+    id: client.webhooks.weblog.id,
+    token: client.webhooks.weblog.token,
   });
 
   let code = interaction.options.getString("code");

@@ -3,8 +3,8 @@ const Functions = require("../../database/models/functions");
 
 module.exports = async (client, guild) => {
   const webhookClient = new discord.WebhookClient({
-    id: client.webhooks.HookLogger.id,
-    token: client.webhooks.HookLogger.token,
+    id: client.webhooks.weblog.id,
+    token: client.webhooks.weblog.token,
   });
 
   if (guild == undefined) return;

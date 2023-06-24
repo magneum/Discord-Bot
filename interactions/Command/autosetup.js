@@ -21,7 +21,7 @@ module.exports = {
             .setDescription("The setup that you want")
             .setRequired(true)
             .addChoices(
-              { name: "Server logs", value: "HookLogger" },
+              { name: "Server logs", value: "weblog" },
               { name: "Level logs", value: "levelLogs" },
               { name: "Boost logs", value: "boostLogs" }
             )
