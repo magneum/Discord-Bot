@@ -1,7 +1,7 @@
 const chalk = require("chalk");
 require("dotenv").config("./.env");
 const discord = require("discord.js");
-const webhook = require("./database/json/webhooks.json");
+const webhook = require("./database/json/weblogs.json");
 
 webhook["weblog"].id = process.env.WEBHOOK_ID;
 webhook["weblog"].token = process.env.WEBHOOK_TOKEN;

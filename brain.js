@@ -97,8 +97,8 @@ async function connectToDatabase() {
 }
 
 async function setupWebhooks() {
-  client.webhooks["weblog"].id = process.env.WEBHOOK_ID;
-  client.webhooks["weblog"].token = process.env.WEBHOOK_TOKEN;
+  client.weblogs["weblog"].id = process.env.WEBHOOK_ID;
+  client.weblogs["weblog"].token = process.env.WEBHOOK_TOKEN;
 }
 
 async function loadCommandHandlers() {
@@ -203,14 +203,14 @@ async function setupClient() {
   client.config = require("./config/bot");
   client.changelogs = require("./config/changelogs");
   client.emotes = require("./database/json/emojis.json");
-  client.webhooks = require("./database/json/webhooks.json");
+  client.weblogs = require("./database/json/weblogs.json");
   client.queue = new Map();
   client.playerManager = new Map();
   client.triviaManager = new Map();
   client.commands = new discord.Collection();
-  client.webhooks["weblog"] = new discord.WebhookClient({
-    id: client.webhooks.weblog.id,
-    token: client.webhooks.weblog.token,
+  client.weblogs["weblog"] = new discord.WebhookClient({
+    id: client.weblogs.weblog.id,
+    token: client.weblogs.weblog.token,
   });
 }
 

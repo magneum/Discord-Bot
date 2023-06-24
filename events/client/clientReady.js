@@ -3,8 +3,8 @@ const chalk = require("chalk");
 
 module.exports = async (client) => {
   const weblog = new discord.WebhookClient({
-    id: client.webhooks.weblog.id,
-    token: client.webhooks.weblog.token,
+    id: client.weblogs.weblog.id,
+    token: client.weblogs.weblog.token,
   });
 
   console.log("\u001b[0m");

@@ -3,8 +3,8 @@ const db = require("../../database/models/music");
 
 module.exports = async (client, interaction, args) => {
   const webhookClientLogs = new discord.WebhookClient({
-    id: client.webhooks.weblog.id,
-    token: client.webhooks.weblog.token,
+    id: client.weblogs.weblog.id,
+    token: client.weblogs.weblog.token,
   });
 
   let channel = interaction.member.voice

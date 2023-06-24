@@ -6,8 +6,8 @@ const fs = require("fs");
 
 module.exports = (client) => {
   const weblog = new discord.WebhookClient({
-    id: client.webhooks.weblog.id,
-    token: client.webhooks.weblog.token,
+    id: client.weblogs.weblog.id,
+    token: client.weblogs.weblog.token,
   });
 
   const commands = [];
