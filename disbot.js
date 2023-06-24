@@ -158,7 +158,13 @@ manager.on("shardCreate", async (shard) => {
   });
 });
 
-manager.spawn();
+(async () => {
+  try {
+    await manager.spawn();
+  } catch (error) {
+    console.error("Failed to spawn shards:", error);
+  }
+})();
 
 process.on("unhandledRejection", async (error) => {
   console.error("Unhandled promise rejection:", error);
@@ -167,44 +173,48 @@ process.on("unhandledRejection", async (error) => {
   if (error.stack && error.stack.length > 950)
     error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
-  await HookLogger.send({
-    username: "Bot Logs",
-    embeds: [
-      new discord.EmbedBuilder()
-        .setTitle("🚨・Unhandled promise rejection")
-        .addFields([
-          {
-            name: "Error",
-            value: error ? discord.codeBlock(error) : "No error",
-          },
-          {
-            name: "Stack error",
-            value: error.stack
-              ? discord.codeBlock(error.stack)
-              : "No stack error",
-          },
-        ]),
-    ],
-  }).catch(() => {
+  try {
+    await HookLogger.send({
+      username: "Bot Logs",
+      embeds: [
+        new discord.EmbedBuilder()
+          .setTitle("🚨・Unhandled promise rejection")
+          .addFields([
+            {
+              name: "Error",
+              value: error ? discord.codeBlock(error) : "No error",
+            },
+            {
+              name: "Stack error",
+              value: error.stack
+                ? discord.codeBlock(error.stack)
+                : "No stack error",
+            },
+          ]),
+      ],
+    });
+  } catch (sendError) {
     console.log("Error sending unhandled promise rejection to webhook");
     console.log(error);
-  });
+  }
 });
 
 process.on("warning", async (warn) => {
   console.warn("Warning:", warn);
-  await HookLogger.send({
-    username: "Bot Logs",
-    embeds: [
-      new discord.EmbedBuilder().setTitle("🚨・New warning found").addFields([
-        {
-          name: "Warn",
-          value: "```" + warn + "```",
-        },
-      ]),
-    ],
-  }).catch(() => {
+  try {
+    await HookLogger.send({
+      username: "Bot Logs",
+      embeds: [
+        new discord.EmbedBuilder().setTitle("🚨・New warning found").addFields([
+          {
+            name: "Warn",
+            value: "```" + warn + "```",
+          },
+        ]),
+      ],
+    });
+  } catch (sendError) {
     console.log("Error sending warning to webhook");
     console.log(warn);
-  });
-});
+  }
+})();
