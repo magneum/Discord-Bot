@@ -14,30 +14,29 @@ const client = new discord.Client({
   autoReconnect: true,
   disabledEvents: ["TYPING_START"],
   partials: [
+    discord.Partials.User,
     discord.Partials.Channel,
-    discord.Partials.GuildMember,
     discord.Partials.Message,
     discord.Partials.Reaction,
-    discord.Partials.User,
+    discord.Partials.GuildMember,
     discord.Partials.GuildScheduledEvent,
   ],
   intents: [
     discord.GatewayIntentBits.Guilds,
-    discord.GatewayIntentBits.GuildMembers,
-    discord.GatewayIntentBits.GuildBans,
-    discord.GatewayIntentBits.GuildEmojisAndStickers,
-    discord.GatewayIntentBits.GuildIntegrations,
-    discord.GatewayIntentBits.GuildWebhooks,
     discord.GatewayIntentBits.GuildInvites,
-    discord.GatewayIntentBits.GuildVoiceStates,
+    discord.GatewayIntentBits.GuildMembers,
+    discord.GatewayIntentBits.GuildWebhooks,
     discord.GatewayIntentBits.GuildMessages,
-    discord.GatewayIntentBits.GuildMessageReactions,
-    discord.GatewayIntentBits.GuildMessageTyping,
     discord.GatewayIntentBits.DirectMessages,
-    discord.GatewayIntentBits.DirectMessageReactions,
+    discord.GatewayIntentBits.MessageContent,
+    discord.GatewayIntentBits.GuildVoiceStates,
+    discord.GatewayIntentBits.GuildIntegrations,
+    discord.GatewayIntentBits.GuildMessageTyping,
     discord.GatewayIntentBits.DirectMessageTyping,
     discord.GatewayIntentBits.GuildScheduledEvents,
-    discord.GatewayIntentBits.MessageContent,
+    discord.GatewayIntentBits.GuildMessageReactions,
+    discord.GatewayIntentBits.DirectMessageReactions,
+    discord.GatewayIntentBits.GuildEmojisAndStickers,
   ],
   restTimeOffset: 0,
 });
@@ -110,10 +109,10 @@ client.webhooks = require("./database/json/webhooks.json");
 client.webhooks["HookLogger"].id = process.env.WEBHOOK_ID;
 client.webhooks["HookLogger"].token = process.env.WEBHOOK_TOKEN;
 
-client.commands = new discord.Collection();
+client.queue = new Map();
 client.playerManager = new Map();
 client.triviaManager = new Map();
-client.queue = new Map();
+client.commands = new discord.Collection();
 
 const HookLogger = new discord.WebhookClient({
   id: client.webhooks.HookLogger.id,
@@ -137,22 +136,25 @@ process.on("unhandledRejection", (error) => {
     if (error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
-  const embed = new discord.EmbedBuilder()
-    .setTitle(`🚨・Unhandled promise rejection`)
-    .addFields([
-      {
-        name: "Error",
-        value: error ? discord.codeBlock(error) : "No error",
-      },
-      {
-        name: "Stack error",
-        value: error.stack ? discord.codeBlock(error.stack) : "No stack error",
-      },
-    ])
-    .setColor("#5865F2");
   HookLogger.send({
     username: "Bot Logs",
-    embeds: [embed],
+    embeds: [
+      new discord.EmbedBuilder()
+        .setTitle(`🚨・Unhandled promise rejection`)
+        .addFields([
+          {
+            name: "Error",
+            value: error ? discord.codeBlock(error) : "No error",
+          },
+          {
+            name: "Stack error",
+            value: error.stack
+              ? discord.codeBlock(error.stack)
+              : "No stack error",
+          },
+        ])
+        .setColor("#5865F2"),
+    ],
   }).catch(() => {
     console.log("Error sending unhandledRejection to webhook");
     console.log(error);
@@ -161,18 +163,19 @@ process.on("unhandledRejection", (error) => {
 
 process.on("warning", (warn) => {
   console.warn("Warning:", warn);
-  const embed = new discord.EmbedBuilder()
-    .setTitle(`🚨・New warning found`)
-    .addFields([
-      {
-        name: `Warn`,
-        value: `\`\`\`${warn}\`\`\``,
-      },
-    ])
-    .setColor("#5865F2");
   HookLogger.send({
     username: "Bot Logs",
-    embeds: [embed],
+    embeds: [
+      new discord.EmbedBuilder()
+        .setTitle(`🚨・New warning found`)
+        .addFields([
+          {
+            name: `Warn`,
+            value: `\`\`\`${warn}\`\`\``,
+          },
+        ])
+        .setColor("#5865F2"),
+    ],
   }).catch(() => {
     console.log("Error sending warning to webhook");
     console.log(warn);
@@ -188,21 +191,22 @@ client.on(discord.ShardEvents.Error, (error) => {
     if (error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
   if (!error.stack) return;
-  const embed = new discord.EmbedBuilder()
-    .setTitle(`🚨・A websocket connection encountered an error`)
-    .addFields([
-      {
-        name: `Error`,
-        value: `\`\`\`${error}\`\`\``,
-      },
-      {
-        name: `Stack error`,
-        value: `\`\`\`${error.stack}\`\`\``,
-      },
-    ])
-    .setColor("#5865F2");
   HookLogger.send({
     username: "Bot Logs",
-    embeds: [embed],
+    embeds: [
+      new discord.EmbedBuilder()
+        .setTitle(`🚨・A websocket connection encountered an error`)
+        .addFields([
+          {
+            name: `Error`,
+            value: `\`\`\`${error}\`\`\``,
+          },
+          {
+            name: `Stack error`,
+            value: `\`\`\`${error.stack}\`\`\``,
+          },
+        ])
+        .setColor("#5865F2"),
+    ],
   });
 });
