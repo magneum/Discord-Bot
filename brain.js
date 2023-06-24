@@ -121,52 +121,56 @@ async function setupUnhandledRejectionHandler() {
     if (error.stack && error.stack.length > 950)
       error.stack = error.stack.slice(0, 950) + "... view console for details";
     if (!error.stack) return;
-    weblog.send({
-      username: "Bot Logs",
-      embeds: [
-        new discord.EmbedBuilder()
-          .setTitle(`🚨・Unhandled promise rejection`)
-          .addFields([
-            {
-              name: "Error",
-              value: error ? discord.codeBlock(error) : "No error",
-            },
-            {
-              name: "Stack error",
-              value: error.stack
-                ? discord.codeBlock(error.stack)
-                : "No stack error",
-            },
-          ])
-          .setColor("#5865F2"),
-      ],
-    }).catch(() => {
-      console.log("Error sending unhandledRejection to webhook");
-      console.log(error);
-    });
+    weblog
+      .send({
+        username: "Bot Logs",
+        embeds: [
+          new discord.EmbedBuilder()
+            .setTitle(`🚨・Unhandled promise rejection`)
+            .addFields([
+              {
+                name: "Error",
+                value: error ? discord.codeBlock(error) : "No error",
+              },
+              {
+                name: "Stack error",
+                value: error.stack
+                  ? discord.codeBlock(error.stack)
+                  : "No stack error",
+              },
+            ])
+            .setColor("#5865F2"),
+        ],
+      })
+      .catch(() => {
+        console.log("Error sending unhandledRejection to webhook");
+        console.log(error);
+      });
   });
 }
 
 async function setupWarningHandler() {
   process.on("warning", (warn) => {
     console.warn("Warning:", warn);
-    weblog.send({
-      username: "Bot Logs",
-      embeds: [
-        new discord.EmbedBuilder()
-          .setTitle(`🚨・New warning found`)
-          .addFields([
-            {
-              name: `Warn`,
-              value: `\`\`\`${warn}\`\`\``,
-            },
-          ])
-          .setColor("#5865F2"),
-      ],
-    }).catch(() => {
-      console.log("Error sending warning to webhook");
-      console.log(warn);
-    });
+    weblog
+      .send({
+        username: "Bot Logs",
+        embeds: [
+          new discord.EmbedBuilder()
+            .setTitle(`🚨・New warning found`)
+            .addFields([
+              {
+                name: `Warn`,
+                value: `\`\`\`${warn}\`\`\``,
+              },
+            ])
+            .setColor("#5865F2"),
+        ],
+      })
+      .catch(() => {
+        console.log("Error sending warning to webhook");
+        console.log(warn);
+      });
   });
 }
 
