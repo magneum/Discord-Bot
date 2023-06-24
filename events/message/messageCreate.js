@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 const Functions = require("../../database/models/functions");
 const afk = require("../../database/models/afk");
-const chatBotSchema = require("../../database/models/chatbot-channel");
+const chatBotSchema = require("../../database/models/chatbot_channel");
 const messagesSchema = require("../../database/models/messages");
 const messageSchema = require("../../database/models/levelMessages");
 const messageRewards = require("../../database/models/messageRewards");

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const Birthdays = require("../../database/models/birthdaychannels");
-const Chatbot = require("../../database/models/chatbot-channel");
+const Chatbot = require("../../database/models/chatbot_channel");
 const Review = require("../../database/models/reviewChannels");
 const Suggestion = require("../../database/models/suggestionChannels");
 const StarBoard = require("../../database/models/starboardChannels");
