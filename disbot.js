@@ -17,10 +17,10 @@ const manager = new discord.ShardingManager("./brain.js", {
   respawn: true,
 });
 
-// if (process.env.TOPGG_TOKEN) {
-// const { AutoPoster } = require("topgg-autoposter");
-// AutoPoster(process.env.TOPGG_TOKEN, manager);
-// }
+if (process.env.TOPGG_TOKEN) {
+  const { AutoPoster } = require("topgg-autoposter");
+  AutoPoster(process.env.TOPGG_TOKEN, manager);
+}
 
 console.log(
   chalk.blue.bold("System") +
