@@ -48,18 +48,18 @@ if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
 }
 
 const startLogs = new Discord.WebhookClient({
-  id: webhook.startLogs.id,
   token: webhook.startLogs.token,
+  id: webhook.startLogs.id,
 });
 
 const shardLogs = new Discord.WebhookClient({
-  id: webhook.shardLogs.id,
   token: webhook.shardLogs.token,
+  id: webhook.shardLogs.id,
 });
 
 const manager = new Discord.ShardingManager("./brain.js", {
-  totalShards: "auto",
   token: process.env.DISCORD_TOKEN,
+  totalShards: "auto",
   respawn: true,
 });
 
