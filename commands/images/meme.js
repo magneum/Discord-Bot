@@ -10,7 +10,7 @@ module.exports = async (client, interaction, args) => {
       let embed = new discord.EmbedBuilder()
         .setTitle(caption)
         .setImage(image)
-        .setColor(client."#5865F2")
+        .setColor("#5865F2")
         .setFooter({
           text: `👍 ${json.data.children[i].data.ups} | 💬 ${json.data.children[i].data.num_comments}`,
         });

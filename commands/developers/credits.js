@@ -44,7 +44,7 @@ module.exports = async (client, interaction, args) => {
         },
         { name: "🔢┆Amount", value: `${amount}`, inline: true }
       )
-      .setColor(client."#5865F2")
+      .setColor("#5865F2")
       .setTimestamp();
     webhookClientLogs.send({
       username: "Bot Credits",
@@ -77,7 +77,7 @@ module.exports = async (client, interaction, args) => {
         },
         { name: "🔢┆Amount", value: `${amount}`, inline: true }
       )
-      .setColor(client."#5865F2")
+      .setColor("#5865F2")
       .setTimestamp();
     webhookClientLogs.send({
       username: "Bot Credits",

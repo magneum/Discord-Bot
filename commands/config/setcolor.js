@@ -17,7 +17,7 @@ module.exports = async (client, interaction, args) => {
   let color = "";
 
   if (rawColor.toUpperCase() == "DEFAULT") {
-    color = client."#5865F2".replace("#", "");
+    color = "#5865F2".replace("#", "");
   } else {
     color = rawColor;
   }

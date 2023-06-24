@@ -19,7 +19,7 @@ module.exports = (client, error) => {
         value: `\`\`\`${error.stack.substr(0, 1018)}\`\`\``,
       }
     )
-    .setColor(client."#5865F2");
+    .setColor("#5865F2");
   errorlog
     .send({
       username: `Bot errors`,

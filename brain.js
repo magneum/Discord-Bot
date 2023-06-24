@@ -181,7 +181,7 @@ process.on("unhandledRejection", (error) => {
         value: error.stack ? discord.codeBlock(error.stack) : "No stack error",
       },
     ])
-    .setColor(client."#5865F2");
+    .setColor("#5865F2");
   consoleLogs
     .send({
       username: "Bot Logs",
@@ -203,7 +203,7 @@ process.on("warning", (warn) => {
         value: `\`\`\`${warn}\`\`\``,
       },
     ])
-    .setColor(client."#5865F2");
+    .setColor("#5865F2");
   warnLogs
     .send({
       username: "Bot Logs",
@@ -236,7 +236,7 @@ client.on(discord.ShardEvents.Error, (error) => {
         value: `\`\`\`${error.stack}\`\`\``,
       },
     ])
-    .setColor(client."#5865F2");
+    .setColor("#5865F2");
   consoleLogs.send({
     username: "Bot Logs",
     embeds: [embed],

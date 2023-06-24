@@ -74,7 +74,7 @@ function handleMusicPause(interaction, client) {
       thumbnail: embedData.thumbnail.url,
       fields: embedData.fields,
       components: [row],
-      color: client."#ED4245",
+      color: "#ED4245",
       type: "edit",
     },
     interaction.message
@@ -134,7 +134,7 @@ function handleMusicStop(interaction, client) {
   client.embed(
     {
       desc: `Music is currently stopped`,
-      color: client."#ED4245",
+      color: "#ED4245",
       components: [],
       type: "edit",
     },

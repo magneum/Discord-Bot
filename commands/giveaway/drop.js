@@ -35,7 +35,7 @@ module.exports = async (client, interaction, args) => {
         winMessage:
           "Congratulations {winners}! You just won the **{this.prize}** !",
         embedFooter: "Giveaway!",
-        embedColor: client."#5865F2",
+        embedColor: "#5865F2",
         noWinner: "Giveaway canceled, not enough participants. \n",
         hostedBy: `${client.emotes.normal.party} - Hosted by: {this.hostedBy}`,
         winners: `🏆 - Winner(s)`,

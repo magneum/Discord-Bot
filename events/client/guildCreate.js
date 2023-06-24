@@ -46,7 +46,7 @@ module.exports = async (client, guild) => {
         .setThumbnail(
           "https://cdn.discordapp.com/attachments/843487478881976381/852419422392156210/BotPartyEmote.png"
         )
-        .setColor(client."#5865F2");
+        .setColor("#5865F2");
       webhookClient.send({
         username: "Bot Logs",
         avatarURL: client.user.avatarURL(),

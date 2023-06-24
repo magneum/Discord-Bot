@@ -33,7 +33,7 @@ module.exports = async (client) => {
       },
       { name: "📃┆State", value: "Ready", inline: true }
     )
-    .setColor(client."#5865F2");
+    .setColor("#5865F2");
   startLogs.send({
     username: "Bot Logs",
     embeds: [embed],

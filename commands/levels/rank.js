@@ -25,7 +25,7 @@ module.exports = async (client, interaction, args) => {
       .setRequiredXP(xpRequired)
       .setCurrentXP(user.xp)
       .setLevel(user.level)
-      .setProgressBar(client."#5865F2", "COLOR")
+      .setProgressBar("#5865F2", "COLOR")
       .setUsername(target.username)
       .setDiscriminator(target.discriminator)
       .setStatus("dnd")
